@@ -6,5 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class FaqCategory extends Model
 {
-    //
+    public function faqs()
+{
+    return $this->hasMany(Faq::class);
+}
 }
