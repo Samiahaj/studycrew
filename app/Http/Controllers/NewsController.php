@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\News;
+use App\Models\Tag;
 
 use Illuminate\Http\Request;
 
@@ -11,7 +13,10 @@ class NewsController extends Controller
      */
     public function index()
     {
-        //
+         $news = News::latest()->get();
+
+    return $news;
+}
     }
 
     /**
@@ -27,7 +32,19 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $validated = $request->validate([
+        'title' => 'required|max:255',
+        'content' => 'required',
+    ]);
+
+    $news = News::create([
+        'user_id' => auth()->id(),
+        'title' => $validated['title'],
+        'content' => $validated['content'],
+        'published_at' => now(),
+    ]);
+
+    return $news;
     }
 
     /**
