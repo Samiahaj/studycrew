@@ -1,36 +1,68 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyCrew</title>
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+<body class="bg-gray-100">
 
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
+<nav class="bg-white shadow p-4 flex justify-between">
 
-            <!-- Page Heading -->
-            @isset($header)
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endisset
+    <div>
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
-        </div>
-    </body>
+        <a href="/" class="font-bold text-2xl">
+            StudyCrew
+        </a>
+
+    </div>
+
+    <div class="space-x-4">
+
+        <a href="/">
+            Home
+        </a>
+
+        <a href="{{ route('news.index') }}">
+            Nieuws
+        </a>
+
+        <a href="#">
+            FAQ
+        </a>
+
+        <a href="#">
+            Contact
+        </a>
+
+    </div>
+
+    <div>
+
+        @auth
+
+            {{ auth()->user()->username }}
+
+        @else
+
+            <a href="{{ route('login') }}">
+                Inloggen
+            </a>
+
+        @endauth
+
+    </div>
+
+</nav>
+
+<main class="p-6">
+
+    @yield('content')
+
+</main>
+
+</body>
 </html>

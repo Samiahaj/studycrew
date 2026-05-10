@@ -15,7 +15,7 @@ class NewsController extends Controller
     {
          $news = News::latest()->get();
 
-    return $news;
+    return view('news.index', compact('news'));
 }
     }
 
@@ -78,4 +78,4 @@ class NewsController extends Controller
     {
         //
     }
-}
+
