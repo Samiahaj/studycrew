@@ -24,6 +24,7 @@ class NewsController extends Controller
      */
     public function create()
 {
+    
     return view('news.create');
 }
 
@@ -35,12 +36,22 @@ class NewsController extends Controller
        $validated = $request->validate([
         'title' => 'required|max:255',
         'content' => 'required',
+          'image' => 'nullable|image|max:2048',
     ]);
 
+    $imagePath = null;
+
+if ($request->hasFile('image')) {
+
+    $imagePath = $request->file('image')
+        ->store('news-images', 'public');
+}
     $news = News::create([
+
         'user_id' => auth()->id(),
         'title' => $validated['title'],
         'content' => $validated['content'],
+         'image' => $imagePath,
         'published_at' => now(),
     ]);
 
