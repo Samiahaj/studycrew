@@ -29,6 +29,9 @@ class NewsController extends Controller
     return view('news.create', compact('tags'));
 }
 
+
+
+
     /**
      * Store a newly created resource in storage.
      */
@@ -48,7 +51,11 @@ if ($request->hasFile('image')) {
         ->store('news-images', 'public');
 }
     $news = News::create([
+        
+ if($request->has('tags')) {
 
+    $news->tags()->attach($request->tags);
+}
         'user_id' => auth()->id(),
         'title' => $validated['title'],
         'content' => $validated['content'],
