@@ -30,9 +30,11 @@
             Nieuws
         </a>
 
-        <a href="#">
-            FAQ
-        </a>
+        <a href="{{ route('faq.index') }}">
+
+    FAQ
+
+</a>
 
         <a href="#">
             Contact
