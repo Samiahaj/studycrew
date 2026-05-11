@@ -13,4 +13,7 @@ class FAQController extends Controller
 
         return view('faq.index', compact('categories'));
     }
+
+
+    
 }
