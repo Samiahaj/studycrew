@@ -22,6 +22,14 @@ Route::get('/nieuws', [NewsController::class, 'index'])
 Route::get('/nieuws/{news}', [NewsController::class, 'show'])
     ->name('news.show');
 
+    
+
+Route::get('/faq', [FAQController::class, 'index'])
+    ->name('faq.index');
+
+
+
+
 
 Route::middleware(['auth', 'admin'])->group(function () {
 
