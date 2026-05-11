@@ -55,7 +55,9 @@ if ($request->hasFile('image')) {
         'published_at' => now(),
     ]);
 
-    return $news;
+    return redirect()
+    ->route('news.index')
+    ->with('success', 'Nieuwsartikel succesvol aangemaakt.');
     }
 
     /**
