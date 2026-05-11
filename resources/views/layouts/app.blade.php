@@ -59,7 +59,15 @@
 </nav>
 
 <main class="p-6">
+ @if(session('success'))
 
+    <div class="bg-green-200 text-green-800 p-4 rounded mb-4">
+
+        {{ session('success') }}
+
+    </div>
+
+@endif
     @yield('content')
 
 </main>
