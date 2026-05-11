@@ -22,10 +22,11 @@ class NewsController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+ public function create()
 {
-    
-    return view('news.create');
+    $tags = Tag::all();
+
+    return view('news.create', compact('tags'));
 }
 
     /**
