@@ -40,21 +40,51 @@
 
     </div>
 
-    <div>
+   <div>
 
-        @auth
+    @auth
 
-            {{ auth()->user()->username }}
+        <div class="flex items-center gap-4">
 
-        @else
+            <a href="/profile">
+
+                {{ auth()->user()->username }}
+
+            </a>
+
+            <form method="POST"
+                  action="{{ route('logout') }}">
+
+                @csrf
+
+                <button type="submit"
+                        class="text-red-500">
+
+                    Uitloggen
+
+                </button>
+
+            </form>
+
+        </div>
+
+    @else
+
+        <div class="flex gap-4">
 
             <a href="{{ route('login') }}">
                 Inloggen
             </a>
 
-        @endauth
+            <a href="{{ route('register') }}">
+                Registreren
+            </a>
 
-    </div>
+        </div>
+
+    @endauth
+
+</div>
 
 </nav>
 
