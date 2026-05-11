@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class FAQ extends Model
+class Faq extends Model
 {
     use HasFactory;
 
@@ -17,6 +17,6 @@ class FAQ extends Model
 
     public function category()
     {
-        return $this->belongsTo(FAQCategory::class, 'faq_category_id');
+        return $this->belongsTo(FaqCategory::class, 'faq_category_id');
     }
 }

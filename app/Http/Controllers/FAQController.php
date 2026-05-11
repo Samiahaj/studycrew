@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\FAQCategory;
+use App\Models\FaqCategory;
 
 class FAQController extends Controller
 {
     public function index()
     {
-        $categories = FAQCategory::with('faqs')->get();
+        $categories = FaqCategory::with('faqs')->get();
 
         return view('faq.index', compact('categories'));
     }
