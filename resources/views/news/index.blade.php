@@ -13,6 +13,13 @@
     @foreach ($news as $article)
 
         <div class="bg-white p-6 rounded shadow">
+            @if($article->image)
+
+    <img src="{{ asset('storage/' . $article->image) }}"
+         alt="{{ $article->title }}"
+         class="w-full h-64 object-cover rounded mb-4">
+
+@endif
 
             <h2 class="text-2xl font-bold">
 
