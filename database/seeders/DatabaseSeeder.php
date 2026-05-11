@@ -21,16 +21,15 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
+
+        $study = \App\Models\FAQCategory::create([
+            'name' => 'Studie',
+        ]);
+
+        \App\Models\FAQ::create([
+            'faq_category_id' => $study->id,
+            'question' => 'Hoe schrijf ik me in voor examens?',
+            'answer' => 'Je kan je examens registreren via het studentenportaal.',
+        ]);
     }
-
-
-    $study = \App\Models\FAQCategory::create([
-    'name' => 'Studie',
-]);
-
-\App\Models\FAQ::create([
-    'faq_category_id' => $study->id,
-    'question' => 'Hoe schrijf ik me in voor examens?',
-    'answer' => 'Je kan je examens registreren via het studentenportaal.',
-]);
 }
