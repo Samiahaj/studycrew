@@ -25,6 +25,9 @@ Route::get('/nieuws/{news}', [NewsController::class, 'show'])
 
 Route::middleware(['auth', 'admin'])->group(function () {
 
+Route::get('/admin/nieuws', [NewsController::class, 'adminIndex'])
+    ->name('admin.news.index');
+
     Route::get('/admin/nieuws/create', [NewsController::class, 'create'])
         ->name('news.create');
 

@@ -24,7 +24,8 @@
                 Dashboard
             </a>
 
-            <a href="/nieuws" class="block">
+            <a href="{{ route('admin.news.index') }}"
+   class="block">
                 Nieuws
             </a>
 
@@ -35,6 +36,21 @@
             <a href="#" class="block">
                 Gebruikers
             </a>
+
+            <form method="POST"
+      action="{{ route('logout') }}"
+      class="mt-10">
+
+    @csrf
+
+    <button type="submit"
+            class="text-red-400">
+
+        Uitloggen
+
+    </button>
+
+</form>
 
         </nav>
 

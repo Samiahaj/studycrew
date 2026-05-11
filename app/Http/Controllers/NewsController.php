@@ -17,6 +17,13 @@ class NewsController extends Controller
 
     return view('news.index', compact('news'));
 }
+
+public function adminIndex()
+{
+    $news = News::latest()->get();
+
+    return view('admin.news.index', compact('news'));
+}
     
 
     /**
