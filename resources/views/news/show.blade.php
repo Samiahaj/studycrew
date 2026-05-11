@@ -27,6 +27,27 @@
     <p class="mb-6">
 
         {{ $news->content }}
+        <div class="mt-6">
+
+    <h3 class="font-bold mb-2">
+        Tags
+    </h3>
+
+    <div class="flex gap-2">
+
+        @foreach($news->tags as $tag)
+
+            <span class="bg-blue-200 px-3 py-1 rounded">
+
+                {{ $tag->name }}
+
+            </span>
+
+        @endforeach
+
+    </div>
+
+</div>
 
     </p>
 
