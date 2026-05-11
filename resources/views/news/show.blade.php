@@ -7,6 +7,13 @@
     <h1 class="text-4xl font-bold mb-4">
 
         {{ $news->title }}
+        @if($news->image)
+
+    <img src="{{ asset('storage/' . $news->image) }}"
+         alt="{{ $news->title }}"
+         class="w-full h-96 object-cover rounded mb-6">
+
+@endif
 
     </h1>
 
