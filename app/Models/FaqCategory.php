@@ -5,11 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class FaqCategory extends Model
+class FAQCategory extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+    ];
+
     public function faqs()
-{
-    return $this->hasMany(Faq::class);
-}
+    {
+        return $this->hasMany(FAQ::class);
+    }
 }
