@@ -73,7 +73,7 @@ public function adminIndex()
     }
 
     return redirect()
-        ->route('news.index')
+        ->route('admin.news.index')
         ->with('success', 'Nieuwsartikel succesvol aangemaakt.');
 }
 

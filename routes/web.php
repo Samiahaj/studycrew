@@ -12,7 +12,8 @@ Route::get('/', function () {
         ->get();
 
     return view('welcome', compact('latestNews'));
-});
+
+})->name('home');
 
 
 
