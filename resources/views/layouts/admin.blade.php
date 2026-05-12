@@ -29,7 +29,7 @@
                 Nieuws
             </a>
 
-            <a href="#" class="block">
+            <a href="{{ route('admin.faq.index') }}" class="block">
                 FAQ
             </a>
 
