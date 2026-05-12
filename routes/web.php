@@ -62,6 +62,20 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+Route::get('/admin/faq', [FAQController::class, 'adminIndex'])
+    ->name('admin.faq.index');
+
+Route::post('/admin/faq/category', [FAQController::class, 'storeCategory'])
+    ->name('admin.faq.category.store');
+
+Route::post('/admin/faq', [FAQController::class, 'store'])
+    ->name('admin.faq.store');
+
+Route::delete('/admin/faq/{faq}', [FAQController::class, 'destroy'])
+    ->name('admin.faq.destroy');
+
+
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
