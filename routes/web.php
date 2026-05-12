@@ -52,16 +52,15 @@ Route::get('/admin/nieuws', [NewsController::class, 'adminIndex'])
 
     Route::delete('/admin/nieuws/{news}', [NewsController::class, 'destroy'])
         ->name('news.destroy');
-});
+
+Route::get('/admin/nieuws/{news}', [NewsController::class, 'adminShow'])
+    ->name('admin.news.show');
 
 
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
+        Route::middleware('auth')->group(function () {
 Route::get('/admin/faq', [FAQController::class, 'adminIndex'])
     ->name('admin.faq.index');
 
@@ -73,8 +72,17 @@ Route::post('/admin/faq', [FAQController::class, 'store'])
 
 Route::delete('/admin/faq/{faq}', [FAQController::class, 'destroy'])
     ->name('admin.faq.destroy');
+});
 
 
+
+
+
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

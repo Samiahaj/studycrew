@@ -25,6 +25,14 @@ public function adminIndex()
     return view('admin.news.index', compact('news'));
 }
     
+public function adminShow(News $news)
+{
+    return view('admin.news.show', compact('news'));
+}
+
+
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -35,6 +43,8 @@ public function adminIndex()
 
     return view('news.create', compact('tags'));
 }
+
+
 
 
 
@@ -104,9 +114,13 @@ public function adminIndex()
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
-    }
+ public function destroy(News $news)
+{
+    $news->delete();
+
+    return redirect()
+        ->route('admin.news.index')
+        ->with('success', 'Nieuwsartikel verwijderd.');
+}
 
 }

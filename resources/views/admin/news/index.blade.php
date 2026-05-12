@@ -55,7 +55,7 @@
 
                     <td class="p-4 flex gap-4">
 
-                        <a href="{{ route('news.show', $article) }}"
+                        <a href="{{ route('admin.news.show', $article) }}"
                            class="text-blue-500">
 
                             Bekijken
