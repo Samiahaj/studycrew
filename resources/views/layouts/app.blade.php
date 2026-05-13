@@ -48,7 +48,7 @@
 
         <div class="flex items-center gap-4">
 
-            <a href="/profile">
+            <a href="{{ route('profile.show', auth()->user()) }}">
 
                 {{ auth()->user()->username }}
 

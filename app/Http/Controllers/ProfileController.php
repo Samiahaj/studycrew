@@ -21,21 +21,51 @@ class ProfileController extends Controller
         ]);
     }
 
+
+public function show(\App\Models\User $user)
+{
+    return view('profile.show', compact('user'));
+}
+
+
+
+
+
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
-    {
-        $request->user()->fill($request->validated());
+   public function update(Request $request): RedirectResponse
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|max:255',
+        'username' => 'nullable|string|max:255|unique:users,username,' . $request->user()->id,
+        'birthday' => 'nullable|date',
+        'bio' => 'nullable|string',
+        'profile_photo' => 'nullable|image|max:2048',
+    ]);
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
-        }
+    $user = $request->user();
 
-        $request->user()->save();
+    $user->name = $request->name;
+    $user->email = $request->email;
+    $user->username = $request->username;
+    $user->birthday = $request->birthday;
+    $user->bio = $request->bio;
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+    if ($request->hasFile('profile_photo')) {
+
+        $photoPath = $request->file('profile_photo')
+            ->store('profile-photos', 'public');
+
+        $user->profile_photo = $photoPath;
     }
+
+    $user->save();
+
+    return Redirect::route('profile.show', $user)
+        ->with('success', 'Profiel succesvol bijgewerkt.');
+}
 
     /**
      * Delete the user's account.

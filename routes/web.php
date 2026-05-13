@@ -17,6 +17,10 @@ Route::get('/', function () {
 
 
 
+Route::get('/profiel/{user}', [ProfileController::class, 'show'])
+    ->name('profile.show');
+
+
 /*
 |--------------------------------------------------------------------------
 | Public Routes
