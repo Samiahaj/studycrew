@@ -90,8 +90,10 @@ public function adminShow(News $news)
     /**
      * Display the specified resource.
      */
-    public function show(News $news)
+ public function show(News $news)
 {
+    $news->load('comments.user');
+
     return view('news.show', compact('news'));
 }
 

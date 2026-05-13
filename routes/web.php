@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\FAQController;
+use App\Http\Controllers\CommentController;
 
 Route::get('/', function () {
 
@@ -109,6 +110,9 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('/profile', [ProfileController::class, 'destroy'])
         ->name('profile.destroy');
+
+        Route::post('/nieuws/{news}/comment', [CommentController::class, 'store'])
+    ->name('comments.store');
 });
 
 
