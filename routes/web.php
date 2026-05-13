@@ -90,6 +90,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::delete('/admin/faq/{faq}', [FAQController::class, 'destroy'])
         ->name('admin.faq.destroy');
+
+        //comments
+        Route::delete('/admin/comments/{comment}', [CommentController::class, 'destroy'])
+    ->name('admin.comments.destroy');
 });
 
 

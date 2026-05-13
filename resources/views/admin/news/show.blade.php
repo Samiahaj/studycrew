@@ -64,6 +64,71 @@
 
     </form>
 
-</div>
 
+</div>
+ <div class="mt-10">
+
+    <h2 class="text-2xl font-bold mb-6">
+
+        Reacties beheren
+
+    </h2>
+
+    @forelse($news->comments as $comment)
+
+        <div class="bg-gray-100 rounded p-4 mb-4">
+
+            <div class="flex justify-between items-center">
+
+                <div>
+
+                    <strong>
+
+                        {{ $comment->user->username ?? $comment->user->name }}
+
+                    </strong>
+
+                    <p class="text-sm text-gray-500">
+
+                        {{ $comment->created_at->format('d/m/Y') }}
+
+                    </p>
+
+                </div>
+
+                <form method="POST"
+                      action="{{ route('admin.comments.destroy', $comment) }}">
+
+                    @csrf
+                    @method('DELETE')
+
+                    <button class="bg-red-500 text-white px-4 py-2 rounded">
+
+                        Verwijderen
+
+                    </button>
+
+                </form>
+
+            </div>
+
+            <p class="mt-4">
+
+                {{ $comment->content }}
+
+            </p>
+
+        </div>
+
+    @empty
+
+        <p>
+
+            Geen reacties gevonden.
+
+        </p>
+
+    @endforelse
+
+</div>
 @endsection

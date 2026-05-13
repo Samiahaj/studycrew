@@ -27,6 +27,8 @@ public function adminIndex()
     
 public function adminShow(News $news)
 {
+    $news->load('comments.user');
+
     return view('admin.news.show', compact('news'));
 }
 
