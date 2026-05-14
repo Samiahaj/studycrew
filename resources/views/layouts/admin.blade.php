@@ -33,9 +33,12 @@
                 FAQ
             </a>
 
-            <a href="#" class="block">
-                Gebruikers
-            </a>
+           <a href="{{ route('admin.users.index') }}"
+   class="block">
+
+    Gebruikers
+
+</a>
 
             <form method="POST"
       action="{{ route('logout') }}"
