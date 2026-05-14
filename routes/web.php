@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\FAQController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
 
@@ -52,7 +53,11 @@ Route::middleware(['auth', 'admin'])->group(function () {
         return view('dashboard');
     })->name('dashboard');
 
+Route::get('/admin/users', [UserController::class, 'index'])
+    ->name('admin.users.index');
 
+Route::delete('/admin/users/{user}', [UserController::class, 'destroy'])
+    ->name('admin.users.destroy');
 
     // Nieuws
     Route::get('/admin/nieuws', [NewsController::class, 'adminIndex'])
