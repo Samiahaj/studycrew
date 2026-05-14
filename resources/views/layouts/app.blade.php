@@ -36,9 +36,9 @@
 
 </a>
 
-        <a href="#">
-            Contact
-        </a>
+       <a href="{{ route('contact.index') }}">
+    Contact
+</a>
 
     </div>
 

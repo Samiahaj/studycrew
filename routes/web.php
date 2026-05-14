@@ -6,6 +6,7 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\FAQController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ContactController;
 
 Route::get('/', function () {
 
@@ -38,7 +39,11 @@ Route::get('/nieuws/{news}', [NewsController::class, 'show'])
 Route::get('/faq', [FAQController::class, 'index'])
     ->name('faq.index');
 
+Route::get('/contact', [ContactController::class, 'index'])
+    ->name('contact.index');
 
+Route::post('/contact', [ContactController::class, 'store'])
+    ->name('contact.store');
 
 /*
 |--------------------------------------------------------------------------
