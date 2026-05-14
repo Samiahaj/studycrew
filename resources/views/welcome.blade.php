@@ -2,19 +2,19 @@
 
 @section('content')
 
-<div class="space-y-20">
+<div class="space-y-16">
 
     <!-- HERO -->
 
-    <section class="bg-white rounded shadow p-12 text-center">
+    <section class="bg-white rounded-2xl shadow-lg p-12 text-center border border-[#E8D8C4]">
 
-        <h1 class="text-5xl font-bold mb-6">
+        <h1 class="text-5xl font-extrabold mb-6 text-[#5C3A2E]">
 
             Welkom bij StudyCrew
 
         </h1>
 
-        <p class="text-xl text-gray-600 mb-8">
+        <p class="text-xl text-[#5C3A2E] mb-8">
 
             Het platform voor studenten om nieuws,
             informatie en ondersteuning te vinden.
@@ -24,14 +24,28 @@
         <div class="flex justify-center gap-4">
 
             <a href="{{ route('news.index') }}"
-               class="bg-blue-500 text-white px-6 py-3 rounded">
+               class="bg-[#7A1F1F]
+                      text-white
+                      px-6
+                      py-3
+                      rounded-xl
+                      font-semibold
+                      hover:opacity-90
+                      transition">
 
                 Bekijk nieuws
 
             </a>
 
             <a href="{{ route('faq.index') }}"
-               class="bg-gray-200 px-6 py-3 rounded">
+               class="bg-[#E8D8C4]
+                      text-[#5C3A2E]
+                      px-6
+                      py-3
+                      rounded-xl
+                      font-semibold
+                      hover:opacity-90
+                      transition">
 
                 Bekijk FAQ
 
@@ -47,7 +61,7 @@
 
     <section>
 
-        <h2 class="text-3xl font-bold mb-6">
+        <h2 class="text-3xl font-bold mb-6 text-[#5C3A2E]">
 
             Laatste nieuws
 
@@ -57,22 +71,29 @@
 
             @foreach($latestNews as $news)
 
-                <div class="bg-white rounded shadow p-6">
+                <div class="bg-white rounded-2xl shadow-lg p-6 border border-[#E8D8C4]">
 
-                    <h3 class="text-xl font-bold mb-2">
+                    @if($news->image)
+
+                        <img src="{{ asset('storage/' . $news->image) }}"
+                             class="rounded-xl mb-4 h-48 w-full object-cover">
+
+                    @endif
+
+                    <h3 class="text-xl font-bold mb-2 text-[#5C3A2E]">
 
                         {{ $news->title }}
 
                     </h3>
 
-                    <p class="mb-4 text-gray-600">
+                    <p class="mb-4 text-[#5C3A2E]">
 
                         {{ Str::limit($news->content, 100) }}
 
                     </p>
 
                     <a href="{{ route('news.show', $news) }}"
-                       class="text-blue-500">
+                       class="text-[#7A1F1F] font-semibold">
 
                         Lees meer →
 
@@ -88,29 +109,29 @@
 
 
 
-    <!-- FAQ PREVIEW -->
+    <!-- FAQ -->
 
     <section>
 
-        <h2 class="text-3xl font-bold mb-6">
+        <h2 class="text-3xl font-bold mb-6 text-[#5C3A2E]">
 
             Veelgestelde vragen
 
         </h2>
 
-        <div class="bg-white rounded shadow p-8">
+        <div class="bg-white rounded-2xl shadow-lg p-8 border border-[#E8D8C4]">
 
             @foreach($latestFaqs as $faq)
 
-                <div class="mb-6">
+                <div class="mb-6 border-b border-[#E8D8C4] pb-4">
 
-                    <h3 class="font-bold">
+                    <h3 class="font-bold text-lg text-[#5C3A2E]">
 
                         {{ $faq->question }}
 
                     </h3>
 
-                    <p class="text-gray-600">
+                    <p class="text-[#5C3A2E]">
 
                         {{ Str::limit($faq->answer, 120) }}
 
@@ -121,7 +142,7 @@
             @endforeach
 
             <a href="{{ route('faq.index') }}"
-               class="text-blue-500 font-bold">
+               class="text-[#7A1F1F] font-bold">
 
                 Bekijk alle FAQ →
 
@@ -133,9 +154,9 @@
 
 
 
-    <!-- CONTACT CTA -->
+    <!-- CONTACT -->
 
-    <section class="bg-white rounded shadow p-10 text-center">
+    <section class="bg-[#7A1F1F] rounded-2xl shadow-lg p-12 text-center text-white">
 
         <h2 class="text-3xl font-bold mb-4">
 
@@ -143,14 +164,19 @@
 
         </h2>
 
-        <p class="text-gray-600 mb-6">
+        <p class="mb-6 text-[#E8D8C4]">
 
             Neem contact op met StudyCrew.
 
         </p>
 
         <a href="{{ route('contact.index') }}"
-           class="bg-blue-500 text-white px-6 py-3 rounded">
+           class="bg-[#E8D8C4]
+                  text-[#7A1F1F]
+                  px-6
+                  py-3
+                  rounded-xl
+                  font-bold">
 
             Contacteer ons
 

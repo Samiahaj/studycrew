@@ -2,104 +2,169 @@
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StudyCrew</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
+    <title>StudyCrew</title>
+<link rel="icon" type="image/png" href="/studycrew.png?v=2">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="bg-gray-100">
+<body class="bg-[#F5EFE6] text-[#3E2C23] min-h-screen">
 
-<nav class="bg-white shadow p-4 flex justify-between">
+<nav class="bg-[#7A1F1F] text-white shadow-lg px-8 py-5 flex justify-between items-center">
+
+    <!-- LOGO -->
 
     <div>
 
-        <a href="/" class="font-bold text-2xl">
-            StudyCrew
+        <a href="{{ route('home') }}"
+           class="font-extrabold text-3xl tracking-wide">
+
+            Study<span class="text-[#E8D8C4]">
+                Crew
+            </span>
+
         </a>
 
     </div>
 
-    <div class="space-x-4">
 
-        <a href="/">
+
+    <!-- MENU -->
+
+    <div class="flex items-center gap-8 text-lg">
+
+        <a href="{{ route('home') }}"
+           class="hover:text-[#E8D8C4] transition">
+
             Home
+
         </a>
 
-        <a href="{{ route('news.index') }}">
+        <a href="{{ route('news.index') }}"
+           class="hover:text-[#E8D8C4] transition">
+
             Nieuws
+
         </a>
 
-        <a href="{{ route('faq.index') }}">
+        <a href="{{ route('faq.index') }}"
+           class="hover:text-[#E8D8C4] transition">
 
-    FAQ
+            FAQ
 
-</a>
+        </a>
 
-       <a href="{{ route('contact.index') }}">
-    Contact
-</a>
+        <a href="{{ route('contact.index') }}"
+           class="hover:text-[#E8D8C4] transition">
+
+            Contact
+
+        </a>
 
     </div>
 
-   <div>
 
-    @auth
 
-        <div class="flex items-center gap-4">
+    <!-- USER / AUTH -->
 
-            <a href="{{ route('profile.show', auth()->user()) }}">
+    <div>
 
-                {{ auth()->user()->username }}
+        @auth
 
-            </a>
+            <div class="flex items-center gap-5">
 
-            <form method="POST"
-                  action="{{ route('logout') }}">
+                <a href="{{ route('profile.show', auth()->user()) }}"
+                   class="font-semibold hover:text-[#E8D8C4] transition">
 
-                @csrf
+                    {{ auth()->user()->username }}
 
-                <button type="submit"
-                        class="text-red-500">
+                </a>
 
-                    Uitloggen
+                <form method="POST"
+                      action="{{ route('logout') }}">
 
-                </button>
+                    @csrf
 
-            </form>
+                    <button type="submit"
+                            class="bg-[#E8D8C4]
+                                   text-[#7A1F1F]
+                                   px-4
+                                   py-2
+                                   rounded-lg
+                                   font-semibold
+                                   hover:opacity-90
+                                   transition">
 
-        </div>
+                        Uitloggen
 
-    @else
+                    </button>
 
-        <div class="flex gap-4">
+                </form>
 
-            <a href="{{ route('login') }}">
-                Inloggen
-            </a>
+            </div>
 
-            <a href="{{ route('register') }}">
-                Registreren
-            </a>
+        @else
 
-        </div>
+            <div class="flex gap-4">
 
-    @endauth
+                <a href="{{ route('login') }}"
+                   class="bg-[#E8D8C4]
+                          text-[#7A1F1F]
+                          px-4
+                          py-2
+                          rounded-lg
+                          font-semibold
+                          hover:opacity-90
+                          transition">
 
-</div>
+                    Inloggen
+
+                </a>
+
+                <a href="{{ route('register') }}"
+                   class="border
+                          border-[#E8D8C4]
+                          px-4
+                          py-2
+                          rounded-lg
+                          hover:bg-[#E8D8C4]
+                          hover:text-[#7A1F1F]
+                          transition">
+
+                    Registreren
+
+                </a>
+
+            </div>
+
+        @endauth
+
+    </div>
 
 </nav>
 
-<main class="p-6">
- @if(session('success'))
 
-    <div class="bg-green-200 text-green-800 p-4 rounded mb-4">
 
-        {{ session('success') }}
+<main class="p-8 max-w-7xl mx-auto">
 
-    </div>
+    @if(session('success'))
 
-@endif
+        <div class="bg-green-100
+                    text-green-800
+                    border
+                    border-green-300
+                    p-4
+                    rounded-lg
+                    mb-6">
+
+            {{ session('success') }}
+
+        </div>
+
+    @endif
+
     @yield('content')
 
 </main>

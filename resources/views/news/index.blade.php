@@ -35,7 +35,7 @@
             </p>
 
             <a href="{{ route('news.show', $article) }}"
-               class="text-blue-500">
+               class="text-[#7A1F1F]">
 
                 Lees meer
 

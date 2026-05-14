@@ -2,16 +2,31 @@
 
 @section('content')
 
-<h1 class="text-4xl font-bold mb-8">
+<h1 class="text-4xl font-extrabold mb-8 text-[#5C3A2E]">
+
     FAQ Beheer
+
 </h1>
 
-<div class="grid grid-cols-2 gap-8">
 
-    <div class="bg-white p-6 rounded shadow">
 
-        <h2 class="text-xl font-bold mb-4">
+<!-- FORMS -->
+
+<div class="grid md:grid-cols-2 gap-8 mb-10">
+
+    <!-- CATEGORY -->
+
+    <div class="bg-white
+                rounded-2xl
+                shadow-lg
+                border
+                border-[#E8D8C4]
+                p-6">
+
+        <h2 class="text-2xl font-bold mb-6 text-[#5C3A2E]">
+
             Nieuwe categorie
+
         </h2>
 
         <form method="POST"
@@ -22,20 +37,44 @@
             <input type="text"
                    name="name"
                    placeholder="Categorie naam"
-                   class="w-full border p-2 mb-4">
+                   class="w-full
+                          border
+                          border-[#E8D8C4]
+                          rounded-xl
+                          p-3
+                          mb-4">
 
-            <button class="bg-blue-500 text-white px-4 py-2 rounded">
+            <button class="bg-[#7A1F1F]
+                           text-white
+                           px-5
+                           py-3
+                           rounded-xl
+                           hover:opacity-90
+                           transition">
+
                 Toevoegen
+
             </button>
 
         </form>
 
     </div>
 
-    <div class="bg-white p-6 rounded shadow">
 
-        <h2 class="text-xl font-bold mb-4">
+
+    <!-- FAQ -->
+
+    <div class="bg-white
+                rounded-2xl
+                shadow-lg
+                border
+                border-[#E8D8C4]
+                p-6">
+
+        <h2 class="text-2xl font-bold mb-6 text-[#5C3A2E]">
+
             Nieuwe FAQ
+
         </h2>
 
         <form method="POST"
@@ -44,7 +83,12 @@
             @csrf
 
             <select name="faq_category_id"
-                    class="w-full border p-2 mb-4">
+                    class="w-full
+                           border
+                           border-[#E8D8C4]
+                           rounded-xl
+                           p-3
+                           mb-4">
 
                 @foreach($categories as $category)
 
@@ -59,14 +103,33 @@
             <input type="text"
                    name="question"
                    placeholder="Vraag"
-                   class="w-full border p-2 mb-4">
+                   class="w-full
+                          border
+                          border-[#E8D8C4]
+                          rounded-xl
+                          p-3
+                          mb-4">
 
             <textarea name="answer"
                       placeholder="Antwoord"
-                      class="w-full border p-2 mb-4"></textarea>
+                      rows="5"
+                      class="w-full
+                             border
+                             border-[#E8D8C4]
+                             rounded-xl
+                             p-3
+                             mb-4"></textarea>
 
-            <button class="bg-green-500 text-white px-4 py-2 rounded">
+            <button class="bg-[#7A1F1F]
+                           text-white
+                           px-5
+                           py-3
+                           rounded-xl
+                           hover:opacity-90
+                           transition">
+
                 FAQ toevoegen
+
             </button>
 
         </form>
@@ -75,47 +138,89 @@
 
 </div>
 
-<div class="mt-10">
 
-    <h2 class="text-2xl font-bold mb-4">
-        FAQ Overzicht
-    </h2>
+
+<!-- FAQ OVERVIEW -->
+
+<h2 class="text-3xl font-bold mb-6 text-[#5C3A2E]">
+
+    FAQ Overzicht
+
+</h2>
+
+<div class="space-y-8">
 
     @foreach($categories as $category)
 
-        <div class="bg-white rounded shadow p-6 mb-6">
+        <div class="bg-white
+                    rounded-2xl
+                    shadow-lg
+                    border
+                    border-[#E8D8C4]
+                    p-6">
 
-            <h3 class="text-xl font-bold mb-4">
-                {{ $category->name }}
-            </h3>
+            <!-- CATEGORY TITLE -->
 
-            @foreach($category->faqs as $faq)
+            <div class="flex items-center mb-6">
 
-                <div class="border-t py-4">
+                <span class="bg-[#E8D8C4]
+                             text-[#5C3A2E]
+                             px-4
+                             py-2
+                             rounded-full
+                             font-semibold">
 
-                    <strong>
-                        {{ $faq->question }}
-                    </strong>
+                    {{ $category->name }}
 
-                    <p class="mb-4">
-                        {{ $faq->answer }}
-                    </p>
+                </span>
 
-                    <form method="POST"
-                          action="{{ route('admin.faq.destroy', $faq) }}">
+            </div>
 
-                        @csrf
-                        @method('DELETE')
 
-                        <button class="text-red-500">
-                            Verwijderen
-                        </button>
+            <!-- FAQS -->
 
-                    </form>
+            <div class="space-y-4">
 
-                </div>
+                @foreach($category->faqs as $faq)
 
-            @endforeach
+                    <div class="border
+                                border-[#E8D8C4]
+                                rounded-xl
+                                p-5">
+
+                        <h3 class="font-bold text-lg text-[#5C3A2E] mb-2">
+
+                            {{ $faq->question }}
+
+                        </h3>
+
+                        <p class="text-[#5C3A2E] mb-4">
+
+                            {{ $faq->answer }}
+
+                        </p>
+
+                        <form method="POST"
+                              action="{{ route('admin.faq.destroy', $faq) }}">
+
+                            @csrf
+                            @method('DELETE')
+
+                            <button class="text-red-600
+                                           font-semibold
+                                           hover:underline">
+
+                                Verwijderen
+
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                @endforeach
+
+            </div>
 
         </div>
 

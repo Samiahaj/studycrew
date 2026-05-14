@@ -62,8 +62,23 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     // Dashboard
     Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+
+    $usersCount = \App\Models\User::count();
+
+    $newsCount = \App\Models\News::count();
+
+    $faqCount = \App\Models\Faq::count();
+
+    $commentsCount = \App\Models\Comment::count();
+
+    return view('dashboard', compact(
+        'usersCount',
+        'newsCount',
+        'faqCount',
+        'commentsCount'
+    ));
+
+})->name('dashboard');
 
 Route::get('/admin/users', [UserController::class, 'index'])
     ->name('admin.users.index');

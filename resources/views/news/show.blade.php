@@ -47,7 +47,7 @@
 
             @foreach($news->tags as $tag)
 
-                <span class="bg-blue-200 px-3 py-1 rounded">
+                <span class="bg-[#E8D8C4] text-[#5C3A2E] px-3 py-1 rounded">
 
                     {{ $tag->name }}
 
@@ -81,7 +81,7 @@
                           rows="4"
                           placeholder="Schrijf een reactie..."></textarea>
 
-                <button class="bg-blue-500 text-white px-4 py-2 rounded mt-4">
+                <button class="bg-[#7A1F1F] text-white px-4 py-2 rounded mt-4">
 
                     Reageren
 

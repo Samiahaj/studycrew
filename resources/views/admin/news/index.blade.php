@@ -2,75 +2,156 @@
 
 @section('content')
 
-<div class="flex justify-between items-center mb-6">
+<div class="flex justify-between items-center mb-8">
 
-    <h1 class="text-3xl font-bold">
+    <div>
 
-        Nieuwsbeheer
+        <h1 class="text-4xl font-extrabold text-[#5C3A2E]">
 
-    </h1>
+            Nieuwsbeheer
+
+        </h1>
+
+        <p class="text-[#5C3A2E] mt-2">
+
+            Beheer alle nieuwsartikels van StudyCrew.
+
+        </p>
+
+    </div>
+
 
     <a href="{{ route('news.create') }}"
-       class="bg-blue-500 text-white px-4 py-2 rounded">
+       class="bg-[#7A1F1F]
+              text-white
+              px-6
+              py-3
+              rounded-xl
+              font-semibold
+              shadow-lg
+              hover:opacity-90
+              transition">
 
-        Nieuw Artikel
+        + Nieuw Artikel
 
     </a>
 
 </div>
 
-<div class="bg-white rounded shadow">
 
-    <table class="w-full">
 
-        <thead class="bg-gray-200">
+<div class="grid gap-6">
 
-            <tr>
+    @forelse($news as $article)
 
-                <th class="p-4 text-left">Titel</th>
-                <th class="p-4 text-left">Datum</th>
-                <th class="p-4 text-left">Acties</th>
+        <div class="bg-white
+                    rounded-2xl
+                    shadow-lg
+                    border
+                    border-[#E8D8C4]
+                    p-6">
 
-            </tr>
+            <div class="flex justify-between items-start">
 
-        </thead>
+                <div>
 
-        <tbody>
-
-            @foreach($news as $article)
-
-                <tr class="border-t">
-
-                    <td class="p-4">
+                    <h2 class="text-2xl font-bold text-[#5C3A2E] mb-2">
 
                         {{ $article->title }}
 
-                    </td>
+                    </h2>
 
-                    <td class="p-4">
+                    <p class="text-sm text-gray-500 mb-4">
 
-                        {{ $article->published_at }}
+                        Gepubliceerd op:
 
-                    </td>
+                        {{ \Carbon\Carbon::parse($article->published_at)->format('d/m/Y') }}
 
-                    <td class="p-4 flex gap-4">
+                    </p>
 
-                        <a href="{{ route('admin.news.show', $article) }}"
-                           class="text-blue-500">
 
-                            Bekijken
+                    <!-- TAGS -->
 
-                        </a>
+                    <div class="flex flex-wrap gap-2">
 
-                    </td>
+                        @foreach($article->tags as $tag)
 
-                </tr>
+                            <span class="bg-[#E8D8C4]
+                                         text-[#5C3A2E]
+                                         px-3
+                                         py-1
+                                         rounded-full
+                                         text-sm">
 
-            @endforeach
+                                {{ $tag->name }}
 
-        </tbody>
+                            </span>
 
-    </table>
+                        @endforeach
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ACTIONS -->
+
+                <div class="flex gap-3">
+
+                    <a href="{{ route('admin.news.show', $article) }}"
+                       class="text-[#7A1F1F]
+                              font-semibold">
+
+                        Bekijken
+
+                    </a>
+
+                    <a href="{{ route('news.edit', $article) }}"
+                       class="text-[#5C3A2E]
+                              font-semibold">
+
+                        Bewerken
+
+                    </a>
+
+                    <form method="POST"
+                          action="{{ route('news.destroy', $article) }}">
+
+                        @csrf
+                        @method('DELETE')
+
+                        <button class="text-red-600 font-semibold">
+
+                            Verwijderen
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    @empty
+
+        <div class="bg-white
+                    rounded-2xl
+                    shadow-lg
+                    p-8
+                    text-center">
+
+            <p class="text-[#5C3A2E]">
+
+                Geen nieuwsartikels gevonden.
+
+            </p>
+
+        </div>
+
+    @endforelse
 
 </div>
 

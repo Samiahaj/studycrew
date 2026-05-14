@@ -2,59 +2,132 @@
 
 @section('content')
 
-<h1 class="text-3xl font-bold mb-6">
+<div class="flex justify-between items-center mb-8">
 
-    Gebruikers beheren
+    <div>
 
-</h1>
+        <h1 class="text-4xl font-extrabold text-[#5C3A2E]">
 
-<div class="bg-white rounded shadow p-6">
+            Gebruikers beheren
+
+        </h1>
+
+        <p class="text-[#5C3A2E] mt-2">
+
+            Beheer alle gebruikers van StudyCrew.
+
+        </p>
+
+    </div>
+
+</div>
+
+
+
+<div class="grid gap-6">
 
     @foreach($users as $user)
 
-        <div class="border-b py-4 flex justify-between">
+        <div class="bg-white
+                    rounded-2xl
+                    shadow-lg
+                    border
+                    border-[#E8D8C4]
+                    p-6">
 
-            <div>
+            <div class="flex justify-between items-center">
 
-                <h2 class="font-bold">
+                <div>
 
-                    {{ $user->username ?? $user->name }}
+                    <h2 class="text-2xl font-bold text-[#5C3A2E]">
 
-                </h2>
+                        {{ $user->username ?? $user->name }}
 
-                <p>
+                    </h2>
 
-                    {{ $user->email }}
+                    <p class="text-gray-600 mt-1">
 
-                </p>
+                        {{ $user->email }}
 
-                <span class="text-sm text-gray-500">
+                    </p>
 
-                    {{ $user->role }}
+                    <p class="text-sm text-gray-500 mt-2">
 
-                </span>
+                        Lid sinds:
 
-            </div>
+                        {{ $user->created_at->format('d/m/Y') }}
 
-            @if($user->id !== auth()->id())
+                    </p>
 
-                <form method="POST"
-                      action="{{ route('admin.users.destroy', $user) }}">
+                </div>
 
-                    @csrf
-                    @method('DELETE')
 
-                    <button class="bg-red-500 text-white px-4 py-2 rounded">
 
-                        Verwijderen
+                <div class="flex items-center gap-4">
 
-                    </button>
+                    <!-- ROLE BADGE -->
 
-                </form>
+                    @if($user->role === 'admin')
 
-            @endif
+                        <span class="bg-[#7A1F1F]
+                                     text-white
+                                     px-4
+                                     py-2
+                                     rounded-full
+                                     text-sm
+                                     font-semibold">
 
-        </div>
+                            Admin
+
+                        </span>
+
+                    @else
+
+                        <span class="bg-[#E8D8C4]
+                                     text-[#5C3A2E]
+                                     px-4
+                                     py-2
+                                     rounded-full
+                                     text-sm
+                                     font-semibold">
+
+                            User
+
+                        </span>
+
+                    @endif
+
+
+
+                    <!-- DELETE BUTTON -->
+
+                    @if($user->id !== auth()->id())
+
+                        <form method="POST"
+                              action="{{ route('admin.users.destroy', $user) }}">
+
+                            @csrf
+                            @method('DELETE')
+
+  <button class="bg-red-600
+   text-white
+px-5
+   py-2
+          rounded-xl
+         hover:opacity-90
+    transition">
+
+     Verwijderen
+</button>
+
+ </form>
+
+  @endif
+  </div>
+
+ </div>
+
+  </div>
 
     @endforeach
 

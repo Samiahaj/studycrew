@@ -101,7 +101,7 @@
             </div>
 
 
-            <button class="bg-blue-500 text-white px-6 py-3 rounded">
+            <button class="bg-[#7A1F1F] text-white px-6 py-3 rounded">
 
                 Versturen
 
