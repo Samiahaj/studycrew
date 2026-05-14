@@ -14,7 +14,14 @@ Route::get('/', function () {
         ->take(3)
         ->get();
 
-    return view('welcome', compact('latestNews'));
+    $latestFaqs = \App\Models\Faq::latest()
+        ->take(4)
+        ->get();
+
+    return view('welcome', compact(
+        'latestNews',
+        'latestFaqs'
+    ));
 
 })->name('home');
 

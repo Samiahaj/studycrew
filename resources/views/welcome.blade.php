@@ -2,69 +2,161 @@
 
 @section('content')
 
-<div class="bg-white rounded shadow p-10">
+<div class="space-y-20">
 
-    <h1 class="text-5xl font-bold mb-6">
+    <!-- HERO -->
 
-        Welkom bij StudyCrew
+    <section class="bg-white rounded shadow p-12 text-center">
 
-    </h1>
+        <h1 class="text-5xl font-bold mb-6">
 
-    <p class="text-lg mb-8">
+            Welkom bij StudyCrew
 
-        StudyCrew is een studentenplatform waar je nieuws,
-        informatie en updates voor studenten kan bekijken.
+        </h1>
 
-    </p>
+        <p class="text-xl text-gray-600 mb-8">
 
-    <a href="{{ route('news.index') }}"
-       class="bg-blue-500 text-white px-6 py-3 rounded">
+            Het platform voor studenten om nieuws,
+            informatie en ondersteuning te vinden.
 
-        Bekijk Nieuws
+        </p>
 
-    </a>
+        <div class="flex justify-center gap-4">
 
-</div>
+            <a href="{{ route('news.index') }}"
+               class="bg-blue-500 text-white px-6 py-3 rounded">
 
-<div class="mt-10">
+                Bekijk nieuws
 
-    <h2 class="text-3xl font-bold mb-6">
+            </a>
 
-        Laatste Nieuws
+            <a href="{{ route('faq.index') }}"
+               class="bg-gray-200 px-6 py-3 rounded">
 
-    </h2>
+                Bekijk FAQ
 
-    <div class="grid grid-cols-3 gap-6">
+            </a>
 
-        @foreach($latestNews as $article)
+        </div>
 
-            <div class="bg-white p-4 rounded shadow">
+    </section>
 
-                @if($article->image)
 
-                    <img src="{{ asset('storage/' . $article->image) }}"
-                         class="w-full h-48 object-cover rounded mb-4">
 
-                @endif
+    <!-- LATEST NEWS -->
 
-                <h3 class="text-xl font-bold mb-2">
+    <section>
 
-                    {{ $article->title }}
+        <h2 class="text-3xl font-bold mb-6">
 
-                </h3>
+            Laatste nieuws
 
-                <a href="{{ route('news.show', $article) }}"
-                   class="text-blue-500">
+        </h2>
 
-                    Lees meer
+        <div class="grid md:grid-cols-3 gap-6">
 
-                </a>
+            @foreach($latestNews as $news)
 
-            </div>
+                <div class="bg-white rounded shadow p-6">
 
-        @endforeach
+                    <h3 class="text-xl font-bold mb-2">
 
-    </div>
+                        {{ $news->title }}
+
+                    </h3>
+
+                    <p class="mb-4 text-gray-600">
+
+                        {{ Str::limit($news->content, 100) }}
+
+                    </p>
+
+                    <a href="{{ route('news.show', $news) }}"
+                       class="text-blue-500">
+
+                        Lees meer →
+
+                    </a>
+
+                </div>
+
+            @endforeach
+
+        </div>
+
+    </section>
+
+
+
+    <!-- FAQ PREVIEW -->
+
+    <section>
+
+        <h2 class="text-3xl font-bold mb-6">
+
+            Veelgestelde vragen
+
+        </h2>
+
+        <div class="bg-white rounded shadow p-8">
+
+            @foreach($latestFaqs as $faq)
+
+                <div class="mb-6">
+
+                    <h3 class="font-bold">
+
+                        {{ $faq->question }}
+
+                    </h3>
+
+                    <p class="text-gray-600">
+
+                        {{ Str::limit($faq->answer, 120) }}
+
+                    </p>
+
+                </div>
+
+            @endforeach
+
+            <a href="{{ route('faq.index') }}"
+               class="text-blue-500 font-bold">
+
+                Bekijk alle FAQ →
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- CONTACT CTA -->
+
+    <section class="bg-white rounded shadow p-10 text-center">
+
+        <h2 class="text-3xl font-bold mb-4">
+
+            Heb je nog vragen?
+
+        </h2>
+
+        <p class="text-gray-600 mb-6">
+
+            Neem contact op met StudyCrew.
+
+        </p>
+
+        <a href="{{ route('contact.index') }}"
+           class="bg-blue-500 text-white px-6 py-3 rounded">
+
+            Contacteer ons
+
+        </a>
+
+    </section>
 
 </div>
 
