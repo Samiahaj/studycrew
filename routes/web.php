@@ -83,8 +83,20 @@ Route::middleware(['auth', 'admin'])->group(function () {
 Route::get('/admin/users', [UserController::class, 'index'])
     ->name('admin.users.index');
 
+Route::get('/admin/users/create',
+    [UserController::class, 'create'])
+    ->name('admin.users.create');
+
+Route::post('/admin/users',
+    [UserController::class, 'store'])
+    ->name('admin.users.store');
+
+
+
 Route::delete('/admin/users/{user}', [UserController::class, 'destroy'])
     ->name('admin.users.destroy');
+
+
 
     // Nieuws
     Route::get('/admin/nieuws', [NewsController::class, 'adminIndex'])
@@ -107,7 +119,7 @@ Route::delete('/admin/users/{user}', [UserController::class, 'destroy'])
 
     Route::delete('/admin/nieuws/{news}', [NewsController::class, 'destroy'])
         ->name('news.destroy');
-        
+
 Route::patch('/admin/users/{user}/toggle-admin',
     [UserController::class, 'toggleAdmin'])
     ->name('admin.users.toggle-admin');

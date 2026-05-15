@@ -20,6 +20,20 @@
 
     </div>
 
+<a href="{{ route('admin.users.create') }}"
+   class="bg-[#2F241F]
+          text-[#E8D8C4]
+          px-5
+          py-3
+          rounded-xl
+          font-semibold">
+
+    Nieuwe gebruiker
+
+</a>
+
+
+
 </div>
 
 
