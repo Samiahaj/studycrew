@@ -200,6 +200,14 @@
 
                         </p>
 
+
+                        <a href="{{ route('admin.faq.edit', $faq) }}"
+   class="text-[#5C3A2E] font-semibold mr-4">
+
+    Wijzigen
+
+</a>
+
                         <form method="POST"
                               action="{{ route('admin.faq.destroy', $faq) }}">
 

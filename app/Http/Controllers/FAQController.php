@@ -52,6 +52,37 @@ class FAQController extends Controller
         return back()->with('success', 'FAQ toegevoegd.');
     }
 
+
+    public function edit(Faq $faq)
+{
+    $categories = FaqCategory::all();
+
+    return view('admin.faq.edit', compact(
+        'faq',
+        'categories'
+    ));
+}
+
+
+public function update(Request $request, Faq $faq)
+{
+    $request->validate([
+        'faq_category_id' => 'required',
+        'question' => 'required',
+        'answer' => 'required',
+    ]);
+
+    $faq->update([
+        'faq_category_id' => $request->faq_category_id,
+        'question' => $request->question,
+        'answer' => $request->answer,
+    ]);
+
+    return redirect()
+        ->route('admin.faq.index')
+        ->with('success', 'FAQ bijgewerkt.');
+}
+
     public function destroy(Faq $faq)
     {
         $faq->delete();

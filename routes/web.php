@@ -138,6 +138,15 @@ Route::patch('/admin/users/{user}/toggle-admin',
     Route::delete('/admin/faq/{faq}', [FAQController::class, 'destroy'])
         ->name('admin.faq.destroy');
 
+        Route::get('/admin/faq/{faq}/edit',
+    [FAQController::class, 'edit'])
+    ->name('admin.faq.edit');
+
+Route::put('/admin/faq/{faq}',
+    [FAQController::class, 'update'])
+    ->name('admin.faq.update');
+    
+
         //comments
         Route::delete('/admin/comments/{comment}', [CommentController::class, 'destroy'])
     ->name('admin.comments.destroy');
