@@ -97,7 +97,44 @@
 
                     @endif
 
+  @if($user->id !== auth()->id()
+    && $user->email !== 'admin@ehb.be')
 
+    <form method="POST"
+          action="{{ route('admin.users.toggle-admin', $user) }}">
+
+        @csrf
+        @method('PATCH')
+
+        @if($user->role === 'admin')
+
+            <button style="background-color:#A65E2E;
+               color:white;
+               padding:10px 20px;
+               border-radius:12px;
+               font-weight:600;">
+
+    Verwijder Admin
+
+</button>
+
+        @else
+
+           <button style="background-color:#2F241F;
+               color:#E8D8C4;
+               padding:10px 20px;
+               border-radius:12px;
+               font-weight:600;">
+
+    Maak Admin
+
+</button>
+
+        @endif
+
+    </form>
+
+@endif
 
                     <!-- DELETE BUTTON -->
 

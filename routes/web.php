@@ -107,7 +107,10 @@ Route::delete('/admin/users/{user}', [UserController::class, 'destroy'])
 
     Route::delete('/admin/nieuws/{news}', [NewsController::class, 'destroy'])
         ->name('news.destroy');
-
+        
+Route::patch('/admin/users/{user}/toggle-admin',
+    [UserController::class, 'toggleAdmin'])
+    ->name('admin.users.toggle-admin');
 
 
     // FAQ
