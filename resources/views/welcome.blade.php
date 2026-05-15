@@ -75,8 +75,8 @@
 
                     @if($news->image)
 
-                        <img src="{{ asset('storage/' . $news->image) }}"
-                             class="rounded-xl mb-4 h-48 w-full object-cover">
+                       <img src="{{ asset($news->image) }}"
+     class="rounded-xl mb-4 h-48 w-full object-cover">
 
                     @endif
 

@@ -85,7 +85,20 @@ class FakeDataSeeder extends Seeder
             ]);
         }
 
+  
 
+        $images = [
+    'images/news/student-life.jpg',
+    'images/news/library.jpg',
+    'images/news/coding.jpg',
+    'images/news/group-study.jpg',
+    'images/news/exam.jpg',
+    'images/news/campus.jpg',
+    'images/news/meeting.jpg',
+    'images/news/online-learning.jpg',
+    'images/news/graduation.jpg',
+    'images/news/study-room.jpg',
+];
 
         // NEWS
 
@@ -98,6 +111,7 @@ class FakeDataSeeder extends Seeder
                 'user_id' => $users->random()->id,
                 'title' => fake()->sentence(),
                 'content' => fake()->paragraphs(4, true),
+                'image' => $images[array_rand($images)],
                 'published_at' => now(),
             ]);
 

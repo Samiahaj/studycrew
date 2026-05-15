@@ -13,9 +13,9 @@
 
     @if($news->image)
 
-        <img src="{{ asset('storage/' . $news->image) }}"
-             alt="{{ $news->title }}"
-             class="w-full h-96 object-cover rounded mb-6">
+        <img src="{{ asset($news->image) }}"
+     alt="{{ $news->title }}"
+     class="w-full h-96 object-cover rounded-2xl mb-6">
 
     @endif
 
