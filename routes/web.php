@@ -70,12 +70,13 @@ Route::middleware(['auth', 'admin'])->group(function () {
     $faqCount = \App\Models\Faq::count();
 
     $commentsCount = \App\Models\Comment::count();
+    $messagesCount = \App\Models\ContactMessage::count();
 
     return view('dashboard', compact(
         'usersCount',
         'newsCount',
         'faqCount',
-        'commentsCount'
+        'commentsCount','messagesCount'
     ));
 
 })->name('dashboard');
@@ -150,6 +151,18 @@ Route::put('/admin/faq/{faq}',
         //comments
         Route::delete('/admin/comments/{comment}', [CommentController::class, 'destroy'])
     ->name('admin.comments.destroy');
+
+
+
+
+    //contact
+    Route::get('/admin/berichten',
+    [ContactController::class, 'adminIndex'])
+    ->name('admin.messages.index');
+
+Route::delete('/admin/berichten/{message}',
+    [ContactController::class, 'destroy'])
+    ->name('admin.messages.destroy');
 });
 
 

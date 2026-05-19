@@ -80,6 +80,22 @@
 
     </div>
 
+    <div class="bg-white rounded-2xl shadow-lg p-6 border border-[#E8D8C4]">
+
+    <h2 class="text-lg font-semibold text-[#5C3A2E] mb-2">
+
+        Berichten
+
+    </h2>
+
+    <p class="text-4xl font-extrabold text-[#7A1F1F]">
+
+        {{ $messagesCount }}
+
+    </p>
+
+</div>
+
 </div>
 
 

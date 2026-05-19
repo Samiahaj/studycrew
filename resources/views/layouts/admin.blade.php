@@ -98,7 +98,12 @@
                 Gebruikers
 
             </a>
+<a href="{{ route('admin.messages.index') }}"
+   class="block px-5 py-3 rounded-xl hover:bg-[#4A3A33] transition font-medium">
 
+    Berichten
+
+</a> 
         </nav>
 
 
