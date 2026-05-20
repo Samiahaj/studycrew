@@ -26,7 +26,7 @@ return new class extends Migration
  * worden de gekoppelde nieuwsartikelen
  * automatisch verwijderd.
  */
-public function up(): void
+
     public function up(): void
     {
         Schema::create('news', function (Blueprint $table) {
@@ -50,7 +50,7 @@ public function up(): void
  * wanneer een rollback
  * uitgevoerd wordt.
  */
-public function down(): void
+
     public function down(): void
     {
         Schema::dropIfExists('news');

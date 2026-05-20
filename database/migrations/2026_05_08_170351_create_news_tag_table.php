@@ -24,17 +24,27 @@ return new class extends Migration
  * automatisch.
  */
     public function up(): void
-    {
-        Schema::create('news_tag', function (Blueprint $table) {
-             $table->foreignId('news_id')
-              ->constrained()
-              ->onDelete('cascade');
+{
+    Schema::create('news_tag', function (Blueprint $table) {
 
-              ->constrained()
-              ->onDelete('cascade');
-              
-        });
-    }
+        $table->foreignId('news_id')
+            ->constrained()
+            ->onDelete('cascade');
+
+        /*
+        |----------------------------------------------
+        | Tag relatie
+        |----------------------------------------------
+        | Wanneer een tag verwijderd wordt,
+        | verdwijnt ook de koppeling
+        | met het nieuwsartikel.
+        */
+        $table->foreignId('tag_id')
+            ->constrained()
+            ->onDelete('cascade');
+
+    });
+}
 
     /**
  * Verwijdert de news_tag tabel
