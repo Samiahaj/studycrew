@@ -9,13 +9,25 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+
+/**
+ * Haalt alle gebruikers op
+ * voor het admin dashboard.
+ *
+ * Admins kunnen gebruikers
+ * bekijken en beheren.
+ */
     public function index()
     {
         $users = User::latest()->get();
 
         return view('admin.users.index', compact('users'));
     }
-
+ /**
+ * Toont het formulier
+ * om een nieuwe gebruiker
+ * aan te maken.
+ */
 
 public function create()
 {
@@ -24,7 +36,15 @@ public function create()
 
 
 public function store(Request $request)
-{
+{ 
+    /**
+ * Valideert de gegevens
+ * van een nieuwe gebruiker.
+ *
+ * De admin kan kiezen tussen
+ * een gewone gebruiker
+ * of admin rol.
+ */
     $request->validate([
         'name' => 'required|string|max:255',
         'username' => 'required|string|max:255|unique:users',
@@ -32,7 +52,13 @@ public function store(Request $request)
         'password' => 'required|min:8',
         'role' => 'required|in:user,admin',
     ]);
-
+  /**
+ * Maakt een nieuwe gebruiker aan
+ * en slaat deze op in de database.
+ *
+ * Het wachtwoord wordt beveiligd
+ * met hashing.
+ */
     User::create([
         'name' => $request->name,
         'username' => $request->username,
@@ -46,17 +72,27 @@ public function store(Request $request)
         ->with('success', 'Gebruiker succesvol aangemaakt.');
 }
 
-
-
-
-
+/**
+ * Verwijdert een gebruiker
+ * uit de database.
+ *
+ * Een admin kan zichzelf
+ * niet verwijderen.
+ */
 
     public function destroy(User $user)
     {
+        /**
+ * Controleert of de admin
+ * zichzelf probeert te verwijderen.
+ *
+ * Dit wordt geblokkeerd
+ * voor veiligheid.
+ */
         if ($user->id === auth()->id()) {
 
             return back()
-                ->with('success', 'Je kan jezelf niet verwijderen.');
+                ->with('error', 'Je kan jezelf niet verwijderen.');
         }
 
         $user->delete();
@@ -65,21 +101,37 @@ public function store(Request $request)
             ->with('success', 'Gebruiker verwijderd.');
     }
 
-
+/**
+ * Past de rol van een gebruiker aan.
+ *
+ * Een gebruiker kan admin worden
+ * of adminrechten verliezen.
+ */
     public function toggleAdmin(User $user)
     {
-        
+        /**
+ * Controleert of de admin
+ * zijn eigen rechten probeert
+ * te wijzigen.
+ *
+ * Dit is niet toegestaan.
+ */
         if ($user->id === auth()->id()) {
 
             return back()
-                ->with('success', 'Je kan je eigen rechten niet aanpassen.');
+                ->with('error', 'Je kan je eigen rechten niet aanpassen.');
         }
-
+ /**
+ * Beschermt de hoofdadmin.
+ *
+ * De standaard admin account
+ * kan niet aangepast worden.
+ */
         
         if ($user->email === 'admin@ehb.be') {
 
             return back()
-                ->with('success', 'De hoofdadmin kan niet gewijzigd worden.');
+                ->with('error', 'De hoofdadmin kan niet gewijzigd worden.');
         }
 
         $user->role =

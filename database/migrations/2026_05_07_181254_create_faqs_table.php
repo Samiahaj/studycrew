@@ -7,8 +7,26 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
-     */
+ * Maakt de FAQ tabel aan.
+ *
+ * Deze tabel bevat alle
+ * veelgestelde vragen
+ * van het platform.
+ *
+ * Elke FAQ bevat:
+ * - een categorie
+ * - een vraag
+ * - een antwoord
+ *
+ * Er werd een relatie gemaakt
+ * tussen FAQ's en categorieën
+ * via faq_category_id.
+ *
+ * Wanneer een categorie
+ * verwijderd wordt,
+ * worden gekoppelde FAQ's
+ * automatisch verwijderd.
+ */
     public function up(): void
     {
         Schema::create('faqs', function (Blueprint $table) {
@@ -25,8 +43,10 @@ return new class extends Migration
     }
 
     /**
-     * Reverse the migrations.
-     */
+ * Verwijdert de FAQ tabel
+ * wanneer een rollback
+ * uitgevoerd wordt.
+ */
     public function down(): void
     {
         Schema::dropIfExists('faqs');

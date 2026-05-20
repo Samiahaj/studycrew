@@ -21,7 +21,13 @@ class ProfileController extends Controller
         ]);
     }
 
-
+/**
+ * Toont de publieke profielpagina
+ * van een gebruiker.
+ *
+ * Deze pagina is toegankelijk
+ * voor alle bezoekers.
+ */
 public function show(\App\Models\User $user)
 {
     return view('profile.show', compact('user'));
@@ -31,11 +37,19 @@ public function show(\App\Models\User $user)
 
 
 
-    /**
-     * Update the user's profile information.
-     */
+    
    public function update(Request $request): RedirectResponse
 {
+    /**
+ * Valideert de profielgegevens
+ * van de gebruiker.
+ *
+ * Extra velden werden toegevoegd:
+ * - username
+ * - verjaardag
+ * - bio
+ * - profielfoto
+ */
     $request->validate([
         'name' => 'required|string|max:255',
         'email' => 'required|email|max:255',
@@ -45,6 +59,10 @@ public function show(\App\Models\User $user)
         'profile_photo' => 'nullable|image|max:2048',
     ]);
 
+    /**
+ * Werkt de profielgegevens
+ * van de gebruiker bij.
+ */
     $user = $request->user();
 
     $user->name = $request->name;
@@ -53,6 +71,14 @@ public function show(\App\Models\User $user)
     $user->birthday = $request->birthday;
     $user->bio = $request->bio;
 
+
+    /**
+ * Controleert of een profielfoto
+ * werd geüpload.
+ *
+ * De afbeelding wordt opgeslagen
+ * op de server.
+ */
     if ($request->hasFile('profile_photo')) {
 
         $photoPath = $request->file('profile_photo')
@@ -60,7 +86,11 @@ public function show(\App\Models\User $user)
 
         $user->profile_photo = $photoPath;
     }
-
+/**
+ * Slaat alle gewijzigde
+ * profielgegevens op
+ * in de database.
+ */
     $user->save();
 
     return Redirect::route('profile.show', $user)
@@ -68,20 +98,45 @@ public function show(\App\Models\User $user)
 }
 
     /**
-     * Delete the user's account.
-     */
+ * Verwijdert het account
+ * van de gebruiker.
+ *
+ * De gebruiker moet eerst
+ * het wachtwoord bevestigen.
+ *
+ * Daarna wordt de gebruiker
+ * uitgelogd en verwijderd
+ * uit de database.
+ */
     public function destroy(Request $request): RedirectResponse
     {
+
+    /**
+ * Controleert of het correcte
+ * wachtwoord werd ingegeven
+ * voor accountverwijdering.
+ */
         $request->validateWithBag('userDeletion', [
             'password' => ['required', 'current_password'],
         ]);
 
         $user = $request->user();
-
+/**
+ * Logt de gebruiker uit
+ * voordat het account
+ * verwijderd wordt.
+ */
         Auth::logout();
-
+/**
+ * Verwijdert de gebruiker
+ * permanent uit de database.
+ */
         $user->delete();
-
+/**
+ * Maakt de sessie ongeldig
+ * en genereert een nieuwe
+ * CSRF token voor veiligheid.
+ */
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 

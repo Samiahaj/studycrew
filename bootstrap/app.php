@@ -10,8 +10,21 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
     )
+
+    /**
+ * Registreert custom middleware
+ * voor admin beveiliging.
+ *
+ * De alias 'admin' wordt gekoppeld
+ * aan AdminMiddleware.
+ */
     ->withMiddleware(function (Middleware $middleware): void {
-        $middleware->alias([
+       /**
+ * Maakt een middleware alias aan
+ * zodat deze gebruikt kan worden
+ * in routes/web.php.
+ */
+    $middleware->alias([
     'admin' => \App\Http\Middleware\AdminMiddleware::class,
 ]);
     })

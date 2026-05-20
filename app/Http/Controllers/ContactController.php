@@ -16,11 +16,25 @@ class ContactController extends Controller
 
   public function store(Request $request)
 {
+
+/**
+ * Valideert de gegevens
+ * van het contactformulier.
+ *
+ * Naam, email en bericht
+ * zijn verplicht.
+ */
     $request->validate([
         'name' => 'required|max:255',
         'email' => 'required|email',
         'message' => 'required|max:1000',
     ]);
+
+    /**
+ * Slaat het contactbericht op
+ * in de database zodat admins
+ * het later kunnen bekijken.
+ */
 
     ContactMessage::create([
         'name' => $request->name,
@@ -28,6 +42,15 @@ class ContactController extends Controller
         'message' => $request->message,
     ]);
 
+
+    /**
+ * Verstuurt een email naar
+ * de admin met de inhoud
+ * van het contactformulier.
+ *
+ * Tijdens development wordt
+ * MAIL_MAILER=log gebruikt.
+ */
     Mail::to('admin@ehb.be')
         ->send(new ContactMessageMail($request->all()));
 
@@ -35,6 +58,14 @@ class ContactController extends Controller
         ->with('success', 'Bericht succesvol verzonden.');
 }
 
+
+/**
+ * Haalt alle contactberichten op
+ * voor de admin pagina.
+ *
+ * Berichten worden gesorteerd
+ * van nieuw naar oud.
+ */
 public function adminIndex()
 {
     $messages = ContactMessage::latest()->get();
@@ -45,7 +76,12 @@ public function adminIndex()
     );
 }
 
-
+/**
+ * Verwijdert een contactbericht.
+ *
+ * Admins kunnen berichten beheren
+ * en verwijderen via het dashboard.
+ */
 public function destroy(ContactMessage $message)
 {
     $message->delete();

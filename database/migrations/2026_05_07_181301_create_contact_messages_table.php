@@ -5,10 +5,22 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
-{
-    /**
-     * Run the migrations.
-     */
+{/**
+ * Maakt de contact_messages tabel aan.
+ *
+ * Deze tabel wordt gebruikt
+ * om contactberichten
+ * van bezoekers op te slaan.
+ *
+ * Elk bericht bevat:
+ * - naam
+ * - emailadres
+ * - bericht
+ *
+ * Deze gegevens kunnen
+ * bekeken worden door admins
+ * in het dashboard.
+ */
     public function up(): void
     {
         Schema::create('contact_messages', function (Blueprint $table) {
@@ -24,9 +36,11 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+  /**
+ * Verwijdert de contact_messages tabel
+ * wanneer een rollback
+ * uitgevoerd wordt.
+ */
     public function down(): void
     {
         Schema::dropIfExists('contact_messages');

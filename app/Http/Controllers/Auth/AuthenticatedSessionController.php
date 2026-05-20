@@ -28,6 +28,12 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+    /**
+     * Controleert de rol van de ingelogde gebruiker. Een admin wordt doorgestuurd naar het dashboard.
+     * Een gewone gebruiker wordt doorgestuurd naar de homepagina.
+     */
+
+
        if(auth()->user()->role === 'admin') {
 
     return redirect()->route('dashboard');

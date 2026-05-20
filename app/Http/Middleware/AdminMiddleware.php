@@ -8,18 +8,29 @@ use Symfony\Component\HttpFoundation\Response;
 
 class AdminMiddleware
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  Closure(Request): (Response)  $next
-     */
+    
+
+/**
+ * Controleert of de gebruiker
+ * admin rechten heeft.
+ *
+ * Indien de gebruiker geen admin is,
+ * wordt de toegang geweigerd.
+ */
     public function handle(Request $request, Closure $next): Response
     {
+        /**
+ * Controleert of de gebruiker
+ * ingelogd is en admin rechten heeft.
+ *
+ * Indien niet, wordt een
+ * 403 Forbidden foutmelding getoond.
+ */
          if (!auth()->check() || auth()->user()->role !== 'admin') {
 
         abort(403);
     }
-    // Controleert of de gebruiker verbonden is. Controleert de rol en blokkeert de toegang als deze geen admin is.
+    
         return $next($request);
     }
 }

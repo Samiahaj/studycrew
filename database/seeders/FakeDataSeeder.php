@@ -13,18 +13,41 @@ use Illuminate\Database\Seeder;
 
 class FakeDataSeeder extends Seeder
 {
+
+/**
+ * Voegt fake gegevens toe
+ * aan de database voor testing.
+ *
+ * Deze seeder maakt automatisch:
+ * - gebruikers
+ * - FAQ categorieën
+ * - FAQ's
+ * - tags
+ * - nieuwsartikelen
+ * - reacties
+ *
+ * Hierdoor werkt de website
+ * onmiddellijk na
+ * php artisan migrate:fresh --seed.
+ */
     public function run(): void
     {
         // USERS
 
        
-
+/**
+ * Maakt automatisch
+ * 10 fake gebruikers aan.
+ */
         User::factory(10)->create();
 
 
 
         // FAQ CATEGORIES
-
+/**
+ * Maakt standaard FAQ categorieën aan
+ * zodat de FAQ pagina direct gevuld is.
+ */
         $study = FaqCategory::create([
             'name' => 'Studie',
         ]);
@@ -44,7 +67,10 @@ class FakeDataSeeder extends Seeder
 
 
         // FAQ
-
+/**
+ * Voegt voorbeeld FAQ's toe
+ * gekoppeld aan categorieën.
+ */
         Faq::create([
             'faq_category_id' => $study->id,
             'question' => 'Hoe bereid ik examens goed voor?',
@@ -63,10 +89,17 @@ class FakeDataSeeder extends Seeder
             'answer' => 'Neem contact op met IT support.',
         ]);
 
-
+Faq::create([
+    'faq_category_id' => $general->id,
+    'question' => 'Waar vind ik algemene informatie?',
+    'answer' => 'Bekijk de homepage of contacteer ons.',
+]);
 
         // TAGS
-
+/**
+ * Lijst van tags
+ * voor nieuwsartikelen.
+ */
         $tags = [
             'Studenten',
             'Examens',
@@ -85,7 +118,11 @@ class FakeDataSeeder extends Seeder
             ]);
         }
 
-  
+  /**
+ * Lijst van afbeeldingen
+ * die willekeurig gekoppeld worden
+ * aan nieuwsartikelen.
+ */
 
         $images = [
     'images/news/student-life.jpg',
@@ -105,6 +142,14 @@ class FakeDataSeeder extends Seeder
         $users = User::all();
         $tags = Tag::all();
 
+        /**
+ * Maakt fake nieuwsartikelen aan
+ * met willekeurige gebruikers,
+ * afbeeldingen en tags.
+ *
+ * Elk nieuwsartikel krijgt
+ * tussen 1 en 3 tags.
+ */
         for ($i = 0; $i < 12; $i++) {
 
             $news = News::create([
@@ -123,7 +168,13 @@ class FakeDataSeeder extends Seeder
 
 
         // COMMENTS
-
+/**
+ * Voegt willekeurige reacties toe
+ * aan elk nieuwsartikel.
+ *
+ * Elk artikel krijgt
+ * tussen 2 en 6 reacties.
+ */
         $newsItems = News::all();
 
         foreach ($newsItems as $news) {

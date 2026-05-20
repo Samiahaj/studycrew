@@ -7,8 +7,17 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
-     */
+ * Maakt de FAQ categorieën tabel aan.
+ *
+ * Deze tabel wordt gebruikt
+ * om FAQ's te groeperen
+ * per categorie.
+ *
+ * Voorbeelden van categorieën:
+ * - Studie
+ * - Administratie
+ * - IT & Software
+ */
     public function up(): void
     {
         Schema::create('faq_categories', function (Blueprint $table) {
@@ -18,9 +27,11 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+   /**
+ * Verwijdert de FAQ categorieën tabel
+ * wanneer een rollback
+ * uitgevoerd wordt.
+ */
     public function down(): void
     {
         Schema::dropIfExists('faq_categories');

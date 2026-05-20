@@ -9,10 +9,28 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
+
+    /**
+ * Voegt extra velden toe
+ * aan de users tabel.
+ *
+ * Deze velden worden gebruikt
+ * voor de profielpagina.
+ */
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-       $table->string('username')->unique()->after('name');
+      /**
+ * Extra profielvelden
+ * voor gebruikers:
+ *
+ * - username
+ * - verjaardag
+ * - rol
+ * - bio
+ * - profielfoto
+ */
+        $table->string('username')->unique()->after('name');
        $table->date('birthday')->nullable();
 
         $table->string('role')->default('user');
@@ -23,12 +41,19 @@ return new class extends Migration
     }
 
     /**
-     * Reverse the migrations.
-     */
+ * Draait de migratie terug.
+ */
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            //
-        });
+
+    $table->dropColumn([
+        'username',
+        'birthday',
+        'role',
+        'bio',
+        'profile_photo',
+    ]);
+});
     }
 };

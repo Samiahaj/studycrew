@@ -14,6 +14,11 @@ class UserFactory extends Factory
     /**
      * The current password being used by the factory.
      */
+    /**
+ * Bewaart tijdelijk
+ * een wachtwoord
+ * voor fake gebruikers.
+ */
     protected static ?string $password;
 
     /**
@@ -21,6 +26,18 @@ class UserFactory extends Factory
      *
      * @return array<string, mixed>
      */
+
+    /**
+ * Genereert fake gebruikers
+ * voor testing en seeders.
+ *
+ * Extra profielvelden werden
+ * toegevoegd zoals:
+ * - username
+ * - verjaardag
+ * - bio
+ * - rol
+ */
     public function definition(): array
     {
        return [
@@ -39,6 +56,11 @@ class UserFactory extends Factory
     /**
      * Indicate that the model's email address should be unverified.
      */
+
+    /**
+ * Maakt een gebruiker aan
+ * zonder geverifieerd emailadres.
+ */
     public function unverified(): static
     {
         return $this->state(fn (array $attributes) => [

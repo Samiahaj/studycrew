@@ -6,9 +6,17 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+  /**
+ * Maakt de tags tabel aan.
+ *
+ * Deze tabel wordt gebruikt
+ * om tags op te slaan
+ * voor nieuwsartikelen.
+ *
+ * Tags maken het mogelijk
+ * om nieuwsartikelen
+ * te categoriseren.
+ */
     public function up(): void
     {
         Schema::create('tags', function (Blueprint $table) {
@@ -19,8 +27,10 @@ return new class extends Migration
     }
 
     /**
-     * Reverse the migrations.
-     */
+ * Verwijdert de tags tabel
+ * wanneer een rollback
+ * uitgevoerd wordt.
+ */
     public function down(): void
     {
         Schema::dropIfExists('tags');

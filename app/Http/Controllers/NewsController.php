@@ -9,15 +9,27 @@ use Illuminate\Http\Request;
 class NewsController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     */
+ * Haalt alle nieuwsartikelen op
+ * en toont deze op de publieke
+ * nieuwspagina.
+ *
+ * Artikelen worden gesorteerd
+ * van nieuw naar oud.
+ */
     public function index()
     {
          $news = News::latest()->get();
 
     return view('news.index', compact('news'));
 }
-
+ 
+/**
+ * Haalt alle nieuwsartikelen op
+ * voor het admin dashboard.
+ *
+ * Admins kunnen nieuws beheren
+ * via deze pagina.
+ */
 public function adminIndex()
 {
     $news = News::latest()->get();
@@ -25,6 +37,15 @@ public function adminIndex()
     return view('admin.news.index', compact('news'));
 }
     
+
+/**
+ * Toont een detailpagina van
+ * een nieuwsartikel in het
+ * admin dashboard.
+ *
+ * Reacties en gebruikers
+ * worden automatisch geladen.
+ */
 public function adminShow(News $news)
 {
     $news->load('comments.user');
@@ -35,10 +56,11 @@ public function adminShow(News $news)
 
 
 
-
-    /**
-     * Show the form for creating a new resource.
-     */
+/**
+ * Haalt alle tags op
+ * voor het aanmaken
+ * van een nieuwsartikel.
+ */
  public function create()
 {
     $tags = Tag::all();
@@ -51,11 +73,14 @@ public function adminShow(News $news)
 
 
 
-    /**
-     * Store a newly created resource in storage.
-     */
    public function store(Request $request)
 {
+    /**
+ * Valideert de gegevens
+ * van een nieuw nieuwsartikel.
+ *
+ * Een afbeelding is optioneel.
+ */
     $validated = $request->validate([
         'title' => 'required|max:255',
         'content' => 'required',
@@ -64,12 +89,26 @@ public function adminShow(News $news)
 
     $imagePath = null;
 
+    /**
+ * Controleert of een afbeelding
+ * werd geüpload.
+ *
+ * Indien aanwezig wordt de afbeelding
+ * opgeslagen op de server.
+ */
     if ($request->hasFile('image')) {
 
         $imagePath = $request->file('image')
             ->store('news-images', 'public');
     }
 
+    /**
+ * Maakt een nieuw nieuwsartikel aan
+ * en slaat dit op in de database.
+ *
+ * Het artikel wordt gekoppeld
+ * aan de ingelogde gebruiker.
+ */
     $news = News::create([
 
         'user_id' => auth()->id(),
@@ -79,6 +118,12 @@ public function adminShow(News $news)
         'published_at' => now(),
     ]);
 
+    /**
+ * Controleert of tags geselecteerd zijn.
+ *
+ * Indien aanwezig worden de tags
+ * gekoppeld aan het nieuwsartikel.
+ */
     if($request->has('tags')) {
 
         $news->tags()->attach($request->tags);
@@ -89,9 +134,13 @@ public function adminShow(News $news)
         ->with('success', 'Nieuwsartikel succesvol aangemaakt.');
 }
 
-    /**
-     * Display the specified resource.
-     */
+ /**
+ * Toont een detailpagina
+ * van een nieuwsartikel.
+ *
+ * Reacties en gebruikers
+ * worden automatisch geladen.
+ */
  public function show(News $news)
 {
     $news->load('comments.user');
@@ -99,25 +148,15 @@ public function adminShow(News $news)
     return view('news.show', compact('news'));
 }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
+  
 
     /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
+ * Verwijdert een nieuwsartikel
+ * uit de database.
+ *
+ * Enkel admins hebben toegang
+ * tot deze functionaliteit.
+ */
  public function destroy(News $news)
 {
     $news->delete();

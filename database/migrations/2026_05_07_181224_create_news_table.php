@@ -6,9 +6,27 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+  /**
+ * Maakt de news tabel aan.
+ *
+ * Deze tabel wordt gebruikt om
+ * nieuwsartikelen op te slaan.
+ *
+ * Elk nieuwsartikel bevat:
+ * - een gebruiker (admin)
+ * - titel
+ * - inhoud
+ * - afbeelding
+ * - publicatiedatum
+ *
+ * Er werd een relatie gemaakt
+ * tussen users en news via user_id.
+ *
+ * Wanneer een gebruiker verwijderd wordt,
+ * worden de gekoppelde nieuwsartikelen
+ * automatisch verwijderd.
+ */
+public function up(): void
     public function up(): void
     {
         Schema::create('news', function (Blueprint $table) {
@@ -27,10 +45,12 @@ return new class extends Migration
             $table->timestamps();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     */
+/**
+ * Verwijdert de news tabel
+ * wanneer een rollback
+ * uitgevoerd wordt.
+ */
+public function down(): void
     public function down(): void
     {
         Schema::dropIfExists('news');

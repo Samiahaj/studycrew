@@ -8,13 +8,24 @@ use Illuminate\Database\Eloquent\Model;
 class Faq extends Model
 {
     use HasFactory;
-
+ /**
+ * Bepaalt welke velden
+ * ingevuld mogen worden
+ * via mass assignment.
+ */
     protected $fillable = [
         'faq_category_id',
         'question',
         'answer',
     ];
-
+ 
+    /**
+ * Relatie tussen FAQ
+ * en categorie.
+ *
+ * Een FAQ behoort
+ * tot één categorie.
+ */
     public function category()
     {
         return $this->belongsTo(FaqCategory::class, 'faq_category_id');

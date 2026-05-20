@@ -30,6 +30,13 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+
+    /**
+ * Valideert de registratiegegevens van een nieuwe gebruiker.
+ *
+ * Extra validatie werd toegevoegd voor username zodat elke gebruiker een unieke gebruikersnaam heeft.
+ */
+
         $request->validate([
     'name' => ['required', 'string', 'max:255'],
 
@@ -55,6 +62,17 @@ class RegisteredUserController extends Controller
         Rules\Password::defaults()
     ],
 ]);
+
+/**
+ * Maakt een nieuwe gebruiker aan.
+ *
+ * Extra velden werden toegevoegd:
+ * - username
+ * - role
+ *
+ * Elke nieuwe gebruiker krijgt
+ * standaard de rol "user".
+ */
         $user = User::create([
     'name' => $request->name,
     'username' => $request->username,
@@ -67,6 +85,18 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
+
+
+        /**
+ * Controleert de rol van de gebruiker
+ * na registratie.
+ *
+ * Admins worden doorgestuurd naar
+ * het dashboard.
+ *
+ * Gewone gebruikers worden doorgestuurd
+ * naar de homepagina.
+ */
        if ($user->isAdmin()) {
 
     return redirect()->route('dashboard');

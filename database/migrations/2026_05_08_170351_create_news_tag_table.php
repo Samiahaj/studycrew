@@ -7,16 +7,29 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
-     */
+ * Maakt de tussentabel news_tag aan.
+ *
+ * Deze tabel wordt gebruikt
+ * voor de many-to-many relatie
+ * tussen nieuwsartikelen en tags.
+ *
+ * Een nieuwsartikel kan
+ * meerdere tags hebben
+ * en een tag kan gekoppeld zijn
+ * aan meerdere nieuwsartikelen.
+ *
+ * Wanneer een nieuwsartikel
+ * of tag verwijderd wordt,
+ * verdwijnen de gekoppelde relaties
+ * automatisch.
+ */
     public function up(): void
     {
         Schema::create('news_tag', function (Blueprint $table) {
              $table->foreignId('news_id')
               ->constrained()
               ->onDelete('cascade');
-//als een nieuwsartikel verwijders wordt, worden alle comments van de artikel ook verwijderd.
-        $table->foreignId('tag_id')
+
               ->constrained()
               ->onDelete('cascade');
               
@@ -24,8 +37,10 @@ return new class extends Migration
     }
 
     /**
-     * Reverse the migrations.
-     */
+ * Verwijdert de news_tag tabel
+ * wanneer een rollback
+ * uitgevoerd wordt.
+ */
     public function down(): void
     {
         Schema::dropIfExists('news_tag');

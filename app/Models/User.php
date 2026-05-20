@@ -19,6 +19,20 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
+
+    /**
+ * Bepaalt welke velden
+ * ingevuld mogen worden
+ * via mass assignment.
+ *
+ * Extra profielvelden
+ * werden toegevoegd:
+ * - username
+ * - verjaardag
+ * - bio
+ * - profielfoto
+ * - rol
+ */
     protected $fillable = [
         'name',
     'username',
@@ -35,6 +49,12 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
+
+
+    /**
+ * Verbergt gevoelige gegevens
+ * zodat deze niet zichtbaar zijn.
+ */
     protected $hidden = [
         'password',
         'remember_token',
@@ -45,6 +65,13 @@ class User extends Authenticatable
      *
      * @return array<string, string>
      */
+
+
+    /**
+ * Zet bepaalde gegevens
+ * automatisch om naar
+ * het correcte datatype.
+ */
     protected function casts(): array
     {
         return [
@@ -53,16 +80,38 @@ class User extends Authenticatable
         ];
     }
 
+
+    /**
+ * Relatie tussen gebruiker
+ * en nieuwsartikelen.
+ *
+ * Een gebruiker kan
+ * meerdere nieuwsartikelen hebben.
+ */
 public function news()
 {
     return $this->hasMany(News::class);
 }
 
+/**
+ * Relatie tussen gebruiker
+ * en reacties.
+ *
+ * Een gebruiker kan
+ * meerdere reacties plaatsen.
+ */
 public function comments()
 {
     return $this->hasMany(Comment::class);
 }
 
+
+/**
+ * Controleert of een gebruiker
+ * admin rechten heeft.
+ *
+ * Retourneert true of false.
+ */
 public function isAdmin()
 {
     return $this->role === 'admin';
