@@ -276,5 +276,6 @@ Na `migrate:fresh --seed` wordt automatisch een admin account aangemaakt:
 - Canvas lesmateriaal (cursusmateriaal en opdrachten)
 - ChatGPT werd gebruikt als hulpmiddel bij de verschillende stappen van het project
 AI-chatlog : https://chatgpt.com/share/6a0e212d-400c-83eb-b3f6-690a6d3df436
+- Afbeeldingen gebruikt in de applicatie werden gegenereerd met behulp van ChatGPT.
 
 ## Screenshots van de applicatie
