@@ -254,5 +254,13 @@ Na `migrate:fresh --seed` wordt automatisch een admin account aangemaakt:
 **Email:** admin@ehb.be  
 **Password:** Password!321
 
-## Screenshots van de applicatie
+
 ## Gebruikte bronnen (inclusief AI chatlog)
+
+- GitHub repositories (voor codevoorbeelden, documentatie en probleemoplossing)
+- YouTube-tutorials (voor uitleg en praktische demonstraties)
+- Canvas lesmateriaal (cursusmateriaal en opdrachten)
+- ChatGPT werd gebruikt als hulpmiddel bij de verschillende stappen van het project
+AI-chatlog :
+
+## Screenshots van de applicatie
