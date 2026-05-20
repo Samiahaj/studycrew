@@ -14,9 +14,11 @@
 </head>
 
 <body class="bg-[#F5EFE6] min-h-screen">
-
-    <!-- NAVBAR -->
-
+<!--
+Navigatie voor
+authenticatie pagina's
+zoals login en registratie.
+-->
     <nav class="bg-[#7A1F1F]
                 text-white
                 shadow-lg
@@ -64,7 +66,13 @@
                     p-8
                     border
                     border-[#E8D8C4]">
-
+<!--
+Hier wordt de inhoud
+geladen van pagina's zoals:
+- login
+- register
+- reset password
+-->
             {{ $slot }}
 
         </div>

@@ -11,7 +11,10 @@
             Contact
 
         </h1>
-
+<!--
+Basis contactinformatie
+van StudyCrew.
+-->
         <p class="mb-8 text-gray-600">
 
             Heb je vragen? Neem contact op met StudyCrew.
@@ -49,7 +52,11 @@
 
         </div>
 
-
+<!--
+Contactformulier waarmee
+bezoekers een bericht
+kunnen sturen naar de admin.
+-->
         <form method="POST"
               action="{{ route('contact.store') }}"
               class="space-y-6">
@@ -93,7 +100,11 @@
                     Bericht
 
                 </label>
-
+<!--
+Textarea waarin
+de bezoeker
+een bericht schrijft.
+-->
                 <textarea name="message"
                           rows="5"
                           class="w-full border rounded p-3"></textarea>

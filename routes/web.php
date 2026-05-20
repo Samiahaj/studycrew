@@ -7,7 +7,14 @@ use App\Http\Controllers\FAQController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ContactController;
-
+/*
+|--------------------------------------------------------------------------
+| Homepage
+|--------------------------------------------------------------------------
+| Laadt de homepage
+| met de nieuwste
+| nieuwsartikelen en FAQ's.
+*/
 Route::get('/', function () {
 
     $latestNews = \App\Models\News::latest()
@@ -25,7 +32,13 @@ Route::get('/', function () {
 
 })->name('home');
 
-
+/*
+|--------------------------------------------------------------------------
+| Publiek profiel
+|--------------------------------------------------------------------------
+| Toont het profiel
+| van een gebruiker.
+*/
 
 Route::get('/profiel/{user}', [ProfileController::class, 'show'])
     ->name('profile.show');
@@ -57,10 +70,29 @@ Route::post('/contact', [ContactController::class, 'store'])
 | Admin Routes
 |--------------------------------------------------------------------------
 */
-
+/*
+|--------------------------------------------------------------------------
+| Admin beveiliging
+|--------------------------------------------------------------------------
+| Enkel admins hebben
+| toegang tot deze routes.
+|
+| Middleware:
+| - auth
+| - admin
+*/
 Route::middleware(['auth', 'admin'])->group(function () {
 
-    // Dashboard
+  /*
+|--------------------------------------------------------------------------
+| Dashboard
+|--------------------------------------------------------------------------
+| Toont statistieken
+| uit de database:
+| gebruikers, nieuws,
+| FAQ, reacties
+| en berichten.
+*/
     Route::get('/dashboard', function () {
 
     $usersCount = \App\Models\User::count();
@@ -112,11 +144,7 @@ Route::delete('/admin/users/{user}', [UserController::class, 'destroy'])
     Route::get('/admin/nieuws/{news}', [NewsController::class, 'adminShow'])
         ->name('admin.news.show');
 
-    Route::get('/admin/nieuws/{news}/edit', [NewsController::class, 'edit'])
-        ->name('news.edit');
 
-    Route::put('/admin/nieuws/{news}', [NewsController::class, 'update'])
-        ->name('news.update');
 
     Route::delete('/admin/nieuws/{news}', [NewsController::class, 'destroy'])
         ->name('news.destroy');
@@ -169,10 +197,15 @@ Route::delete('/admin/berichten/{message}',
 
 /*
 |--------------------------------------------------------------------------
-| Authenticated User Routes
+| Authenticated users
 |--------------------------------------------------------------------------
+| Alleen toegankelijk
+| voor ingelogde gebruikers.
+|
+| Bijvoorbeeld:
+| - profiel wijzigen
+| - reacties plaatsen
 */
-
 Route::middleware('auth')->group(function () {
 
     Route::get('/profile', [ProfileController::class, 'edit'])
@@ -188,6 +221,20 @@ Route::middleware('auth')->group(function () {
     ->name('comments.store');
 });
 
-
+/*
+|--------------------------------------------------------------------------
+| Authentication routes
+|--------------------------------------------------------------------------
+| Laadt alle standaard
+| authenticatie routes
+| van Laravel uit auth.php.
+|
+| Bijvoorbeeld:
+| - login
+| - registratie
+| - logout
+| - wachtwoord reset
+*/
+require __DIR__.'/auth.php';
 
 require __DIR__.'/auth.php';

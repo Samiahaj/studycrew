@@ -7,7 +7,11 @@
     Nieuws aanmaken
 
 </h1>
-
+<!--
+Formulier waarmee
+admins een nieuw
+nieuwsartikel kunnen aanmaken.
+-->
 <form action="{{ route('news.store') }}"
       method="POST"
       enctype="multipart/form-data"
@@ -38,7 +42,10 @@
     <div>
 
         <label>Afbeelding</label>
-
+<!--
+Upload van een afbeelding
+voor het nieuwsartikel.
+-->
         <input type="file" name="image">
 
     </div>
@@ -51,7 +58,12 @@
     </label>
 
     <div class="space-y-2 mt-2">
+<!--
+Toont alle beschikbare tags.
 
+Een artikel kan
+meerdere tags krijgen.
+-->
         @foreach($tags as $tag)
 
             <div>

@@ -16,7 +16,12 @@
                 border
                 border-[#E8D8C4]
                 p-8">
-
+<!--
+Formulier waarmee
+een admin handmatig
+een nieuwe gebruiker
+kan aanmaken.
+-->
         <form method="POST"
               action="{{ route('admin.users.store') }}">
 
@@ -80,7 +85,11 @@
                 <label class="block font-semibold mb-2">
                     Rol
                 </label>
-
+<!--
+Hier kiest de admin
+de rol van de gebruiker:
+user of admin.
+-->
                 <select name="role"
                         class="w-full border rounded-xl p-3">
 

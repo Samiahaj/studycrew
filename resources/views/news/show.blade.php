@@ -10,7 +10,11 @@
 
     </h1>
 
-
+<!--
+Toont de afbeelding
+van het nieuwsartikel
+indien beschikbaar.
+-->
     @if($news->image)
 
         <img src="{{ asset($news->image) }}"
@@ -44,7 +48,11 @@
         </h3>
 
         <div class="flex gap-2">
-
+<!--
+Toont alle tags
+die gekoppeld zijn
+aan het nieuwsartikel.
+-->
             @foreach($news->tags as $tag)
 
                 <span class="bg-[#E8D8C4] text-[#5C3A2E] px-3 py-1 rounded">
@@ -67,7 +75,10 @@
             Reacties
 
         </h2>
-
+<!--
+Alleen ingelogde gebruikers
+kunnen reacties plaatsen.
+-->
         @auth
 
             <form method="POST"
@@ -98,7 +109,10 @@
             </p>
 
         @endauth
-
+<!--
+Toont alle reacties
+van het nieuwsartikel.
+-->
 
         @forelse($news->comments as $comment)
 
@@ -127,7 +141,10 @@
                 </p>
 
             </div>
-
+<!--
+Wordt getoond wanneer
+er nog geen reacties zijn.
+-->
         @empty
 
             <p>

@@ -9,7 +9,16 @@
 </h1>
 
 
-<!-- STATS -->
+<!--
+Dashboard statistieken.
+
+Toont aantallen van:
+- gebruikers
+- nieuwsartikelen
+- FAQ
+- reacties
+- contactberichten
+-->
 
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
 
@@ -89,7 +98,11 @@
     </h2>
 
     <p class="text-4xl font-extrabold text-[#7A1F1F]">
-
+<!--
+Toont hoeveel
+contactberichten
+werden verzonden.
+-->
         {{ $messagesCount }}
 
     </p>
@@ -100,7 +113,11 @@
 
 
 
-<!-- QUICK ACTIONS -->
+<!--
+Snelle acties
+voor admins
+om sneller te navigeren.
+-->
 
 <h2 class="text-2xl font-bold mb-6 text-[#5C3A2E]">
 

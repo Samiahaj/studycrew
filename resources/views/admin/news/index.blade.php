@@ -41,7 +41,15 @@
 
 
 <div class="grid gap-6">
+ <!--
+Toont alle nieuwsartikelen
+voor de admin.
 
+De admin kan:
+- bekijken
+- bewerken
+- verwijderen
+-->
     @forelse($news as $article)
 
         <div class="bg-white
@@ -73,7 +81,11 @@
                     <!-- TAGS -->
 
                     <div class="flex flex-wrap gap-2">
-
+<!--
+Toont alle tags
+die gekoppeld zijn
+aan een nieuwsartikel.
+-->
                         @foreach($article->tags as $tag)
 
                             <span class="bg-[#E8D8C4]
@@ -95,7 +107,12 @@
 
 
 
-                <!-- ACTIONS -->
+             <!--
+Acties voor admins:
+bekijken, wijzigen
+of verwijderen
+van een artikel.
+-->
 
                 <div class="flex gap-3">
 
@@ -134,7 +151,10 @@
             </div>
 
         </div>
-
+<!--
+Wordt getoond wanneer
+er geen nieuwsartikelen bestaan.
+-->
     @empty
 
         <div class="bg-white

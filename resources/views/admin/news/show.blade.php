@@ -16,7 +16,11 @@
         {{ $news->title }}
 
     </h1>
-
+<!--
+Toont de afbeelding
+van het nieuwsartikel
+indien beschikbaar.
+-->
     @if($news->image)
 
         <img src="{{ asset('storage/' . $news->image) }}"
@@ -37,7 +41,11 @@
     </h2>
 
     <div class="flex gap-2 mb-8">
-
+ <!--
+Toont alle tags
+die gekoppeld zijn
+aan dit nieuwsartikel.
+-->
         @foreach($news->tags as $tag)
 
             <span class="bg-blue-200 px-3 py-1 rounded">
@@ -73,7 +81,13 @@
         Reacties beheren
 
     </h2>
+<!--
+Toont alle reacties
+van dit nieuwsartikel.
 
+Admins kunnen reacties
+verwijderen indien nodig.
+-->
     @forelse($news->comments as $comment)
 
         <div class="bg-gray-100 rounded p-4 mb-4">
@@ -83,7 +97,11 @@
                 <div>
 
                     <strong>
-
+<!--
+Toont de username.
+Indien geen username bestaat,
+wordt de naam gebruikt.
+-->
                         {{ $comment->user->username ?? $comment->user->name }}
 
                     </strong>
@@ -119,7 +137,10 @@
             </p>
 
         </div>
-
+<!--
+Wordt getoond wanneer
+er geen reacties bestaan.
+-->
     @empty
 
         <p>

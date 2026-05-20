@@ -9,10 +9,19 @@
 </h1>
 
 <div class="space-y-6">
-
+<!--
+Toont alle nieuwsartikelen
+op de nieuwspagina.
+-->
     @foreach ($news as $article)
 
         <div class="bg-white p-6 rounded shadow">
+
+        <!--
+Toont een afbeelding
+indien het artikel
+een afbeelding heeft.
+-->
             @if($article->image)
 
    <img src="{{ asset($article->image) }}"

@@ -16,7 +16,11 @@
         @csrf
 
     </form>
-
+ <!--
+Formulier om
+het profiel van
+de gebruiker aan te passen.
+-->
     <form method="post"
           action="{{ route('profile.update') }}"
           class="mt-6 space-y-6"
@@ -89,7 +93,11 @@
             @endif
         </div>
 
-        <div>
+        <div> 
+            <!--
+Extra veld toegevoegd
+voor username.
+-->
             <x-input-label for="username"
                            value="Username" />
 
@@ -104,6 +112,10 @@
         </div>
 
         <div>
+            <!--
+Gebruiker kan
+een verjaardag toevoegen.
+-->
             <x-input-label for="birthday"
                            value="Verjaardag" />
 
@@ -118,6 +130,11 @@
         </div>
 
         <div>
+            <!--
+Persoonlijke bio
+of beschrijving
+van de gebruiker.
+-->
             <x-input-label for="bio"
                            value="Over mij" />
 
@@ -132,7 +149,10 @@
         <div>
             <x-input-label for="profile_photo"
                            value="Profielfoto" />
-
+<!--
+Upload van een
+profielfoto.
+-->
             <input type="file"
                    id="profile_photo"
                    name="profile_photo"

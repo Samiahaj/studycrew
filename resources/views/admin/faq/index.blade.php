@@ -11,7 +11,14 @@
 
 
 <!-- FORMS -->
+ <!--
+Admin formulieren
+voor FAQ beheer.
 
+Een admin kan:
+- nieuwe categorieën toevoegen
+- nieuwe FAQ's toevoegen
+-->
 <div class="grid md:grid-cols-2 gap-8 mb-10">
 
     <!-- CATEGORY -->
@@ -89,7 +96,10 @@
                            rounded-xl
                            p-3
                            mb-4">
-
+<!--
+Toont alle FAQ categorieën
+met hun gekoppelde FAQ's.
+-->
                 @foreach($categories as $category)
 
                     <option value="{{ $category->id }}">
@@ -180,7 +190,11 @@
             <!-- FAQS -->
 
             <div class="space-y-4">
-
+ <!--
+Toont alle FAQ's
+die behoren tot
+de gekozen categorie.
+-->
                 @foreach($category->faqs as $faq)
 
                     <div class="border
@@ -199,7 +213,10 @@
                             {{ $faq->answer }}
 
                         </p>
-
+<!--
+Knop om een FAQ
+te wijzigen.
+-->
 
                         <a href="{{ route('admin.faq.edit', $faq) }}"
    class="text-[#5C3A2E] font-semibold mr-4">
@@ -212,6 +229,10 @@
                               action="{{ route('admin.faq.destroy', $faq) }}">
 
                             @csrf
+                            <!--
+Verwijdert een FAQ
+uit de database.
+-->
                             @method('DELETE')
 
                             <button class="text-red-600

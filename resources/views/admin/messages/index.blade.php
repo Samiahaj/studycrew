@@ -9,7 +9,11 @@
 </h1>
 
 <div class="space-y-6">
-
+ <!--
+Toont alle contactberichten
+die verstuurd werden
+via het contactformulier.
+-->
     @forelse($messages as $message)
 
         <div class="bg-white rounded-2xl p-6 shadow border border-[#E8D8C4]">
@@ -33,7 +37,10 @@
                 </div>
 
                 <span class="text-sm text-gray-500">
-
+ <!--
+Toont datum en uur
+van het verzonden bericht.
+-->
                     {{ $message->created_at->format('d/m/Y H:i') }}
 
                 </span>
@@ -61,7 +68,10 @@
             </form>
 
         </div>
-
+ <!--
+Wordt getoond wanneer
+er geen contactberichten zijn.
+-->
     @empty
 
         <p>Geen berichten gevonden.</p>

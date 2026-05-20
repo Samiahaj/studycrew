@@ -14,7 +14,17 @@
 
 <div class="flex min-h-screen">
 
-    <!-- SIDEBAR -->
+   <!--
+Sidebar van het admin panel.
+
+Hier kan de admin
+navigeren tussen:
+- dashboard
+- nieuws
+- FAQ
+- gebruikers
+- berichten
+-->
 
     <aside class="w-72 bg-[#2F241F] text-white shadow-2xl flex flex-col">
 
@@ -40,7 +50,10 @@
 
 
 
-        <!-- NAVIGATION -->
+     <!--
+Navigatiemenu
+voor admins.
+-->
 
         <nav class="flex-1 p-6 space-y-3">
 
@@ -115,7 +128,10 @@
             <div class="mb-5">
 
                 <p class="font-semibold text-lg">
-
+<!--
+Toont de naam
+van de ingelogde admin.
+-->
                     {{ auth()->user()->username }}
 
                 </p>
@@ -127,7 +143,10 @@
                 </p>
 
             </div>
-
+<!--
+Formulier om veilig
+uit te loggen.
+-->
             <form method="POST"
                   action="{{ route('logout') }}">
 
@@ -158,7 +177,10 @@
     <!-- MAIN CONTENT -->
 
     <main class="flex-1 p-10">
-
+<!--
+Hier wordt de inhoud
+van elke admin pagina geladen.
+-->
         @yield('content')
 
     </main>

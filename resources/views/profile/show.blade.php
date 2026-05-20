@@ -7,7 +7,13 @@
     <div class="bg-white rounded shadow p-8">
 
         <div class="flex items-center gap-6 mb-8">
+<!--
+Toont de profielfoto
+indien beschikbaar.
 
+Anders wordt
+een standaard vakje getoond.
+-->
             @if($user->profile_photo)
 
                 <img src="{{ asset('storage/' . $user->profile_photo) }}"
@@ -22,7 +28,11 @@
             <div>
 
                 <h1 class="text-4xl font-bold">
-
+<!--
+Toont de username.
+Indien deze niet bestaat,
+wordt de naam getoond.
+-->
                     {{ $user->username ?? $user->name }}
 
                 </h1>
@@ -48,6 +58,14 @@
 
             <p>
 
+            <!--
+Toont de bio
+van de gebruiker.
+
+Indien leeg wordt
+een standaard tekst getoond.
+-->
+
                 {{ $user->bio ?? 'Geen bio toegevoegd.' }}
 
             </p>
@@ -70,7 +88,11 @@
 
         </div>
 
-
+<!--
+Alleen de eigenaar
+van het profiel
+kan wijzigingen doen.
+-->
         @auth
 
             @if(auth()->id() === $user->id)

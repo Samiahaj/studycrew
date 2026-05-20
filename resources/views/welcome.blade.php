@@ -4,7 +4,14 @@
 
 <div class="space-y-16">
 
-    <!-- HERO -->
+  <!--
+Welkom sectie
+van de homepage.
+
+Geeft bezoekers
+snelle toegang
+tot nieuws en FAQ.
+-->
 
     <section class="bg-white rounded-2xl shadow-lg p-12 text-center border border-[#E8D8C4]">
 
@@ -68,11 +75,18 @@
         </h2>
 
         <div class="grid md:grid-cols-3 gap-6">
-
+<!--
+Toont de nieuwste
+nieuwsartikelen
+uit de database.
+-->
             @foreach($latestNews as $news)
 
                 <div class="bg-white rounded-2xl shadow-lg p-6 border border-[#E8D8C4]">
-
+<!--
+Toont een afbeelding
+indien beschikbaar.
+-->
                     @if($news->image)
 
                        <img src="{{ asset($news->image) }}"
@@ -87,7 +101,10 @@
                     </h3>
 
                     <p class="mb-4 text-[#5C3A2E]">
-
+<!--
+Beperkt de tekstlengte
+zodat de homepage overzichtelijk blijft.
+-->
                         {{ Str::limit($news->content, 100) }}
 
                     </p>
@@ -120,7 +137,10 @@
         </h2>
 
         <div class="bg-white rounded-2xl shadow-lg p-8 border border-[#E8D8C4]">
-
+<!--
+Toont een overzicht
+van recente FAQ's.
+-->
             @foreach($latestFaqs as $faq)
 
                 <div class="mb-6 border-b border-[#E8D8C4] pb-4">
@@ -154,8 +174,11 @@
 
 
 
-    <!-- CONTACT -->
-
+    <!--
+Contact sectie
+voor bezoekers
+met extra vragen.
+-->
     <section class="bg-[#7A1F1F] rounded-2xl shadow-lg p-12 text-center text-white">
 
         <h2 class="text-3xl font-bold mb-4">

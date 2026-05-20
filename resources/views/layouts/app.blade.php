@@ -11,7 +11,17 @@
 </head>
 
 <body class="bg-[#F5EFE6] text-[#3E2C23] min-h-screen">
+<!--
+Hoofdnavigatie
+van de website.
 
+Bezoekers kunnen
+navigeren naar:
+- home
+- nieuws
+- FAQ
+- contact
+-->
 <nav class="bg-[#7A1F1F] text-white shadow-lg px-8 py-5 flex justify-between items-center">
 
     <!-- LOGO -->
@@ -70,7 +80,11 @@
     <!-- USER / AUTH -->
 
     <div>
-
+<!--
+Toont andere opties
+wanneer een gebruiker
+ingelogd is.
+-->
         @auth
 
             <div class="flex items-center gap-5">
@@ -104,7 +118,11 @@
                 </form>
 
             </div>
-
+<!--
+Toont login en registratie
+voor bezoekers
+die niet ingelogd zijn.
+-->
         @else
 
             <div class="flex gap-4">
@@ -148,7 +166,13 @@
 
 
 <main class="p-8 max-w-7xl mx-auto">
-
+<!--
+Toont succesmeldingen
+na acties zoals:
+login, logout,
+formulier verzenden
+of profiel wijzigen.
+-->
     @if(session('success'))
 
         <div class="bg-green-100
@@ -164,7 +188,10 @@
         </div>
 
     @endif
-
+<!--
+Hier wordt de inhoud
+van elke pagina geladen.
+-->
     @yield('content')
 
 </main>

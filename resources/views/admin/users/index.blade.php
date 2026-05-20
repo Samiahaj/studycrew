@@ -39,7 +39,14 @@
 
 
 <div class="grid gap-6">
+<!--
+Toont alle gebruikers
+van het platform.
 
+Admins kunnen:
+- rollen aanpassen
+- gebruikers verwijderen
+-->
     @foreach($users as $user)
 
         <div class="bg-white
@@ -79,7 +86,10 @@
 
                 <div class="flex items-center gap-4">
 
-                    <!-- ROLE BADGE -->
+                    <!--
+Toont visueel
+welke rol een gebruiker heeft.
+-->
 
                     @if($user->role === 'admin')
 
@@ -110,11 +120,20 @@
                         </span>
 
                     @endif
-
+<!--
+Voorkomt dat een admin
+zijn eigen rechten
+of de hoofdadmin wijzigt.
+-->
   @if($user->id !== auth()->id()
     && $user->email !== 'admin@ehb.be')
 
+    <!--
+Wijzigt de rol
+tussen user en admin.
+-->
     <form method="POST"
+   
           action="{{ route('admin.users.toggle-admin', $user) }}">
 
         @csrf
@@ -150,7 +169,10 @@
 
 @endif
 
-                    <!-- DELETE BUTTON -->
+                    <!--
+Voorkomt dat een admin
+zichzelf verwijdert.
+-->
 
                     @if($user->id !== auth()->id())
 

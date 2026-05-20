@@ -7,7 +7,10 @@
     FAQ
 
 </h1>
-
+ <!--
+Toont alle FAQ categorieën
+met hun gekoppelde vragen.
+-->
 @foreach($categories as $category)
 
     <div class="mb-10">
@@ -19,7 +22,11 @@
         </h2>
 
         <div class="space-y-4">
-
+<!--
+Toont alle FAQ's
+die behoren tot
+de categorie.
+-->
             @foreach($category->faqs as $faq)
 
                 <div class="bg-white p-6 rounded shadow">
@@ -45,7 +52,11 @@
     </div>
 
 @endforeach
-
+<!--
+Link naar de contactpagina
+wanneer bezoekers
+geen antwoord vinden.
+-->
 <div class="mt-10">
 
     <a href="/contact"
