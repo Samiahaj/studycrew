@@ -281,23 +281,23 @@ AI-chatlog : https://chatgpt.com/share/6a0e212d-400c-83eb-b3f6-690a6d3df436
 ## Screenshots van de applicatie
 ### Niet ingelogd
 Homepage
-![](<screenshots/Screenshot 2026-05-21 150800.png>)
-![](<screenshots/Screenshot 2026-05-21 150829.png>)
-![](<screenshots/Screenshot 2026-05-21 150842.png>)
+![](<screenshots/nietingelogd/Screenshot 2026-05-21 150800.png>)
+![](<screenshots/nietingelogd/Screenshot 2026-05-21 150829.png>)
+![](<screenshots/nietingelogd/Screenshot 2026-05-21 150842.png>)
 Nieuws overzicht
-![](<screenshots/Screenshot 2026-05-21 150902.png>)
+![](<screenshots/nietingelogd/Screenshot 2026-05-21 150902.png>)
 Nieuws detail
-![](<screenshots/Screenshot 2026-05-21 150932.png>)
+![](<screenshots/nietingelogd/Screenshot 2026-05-21 150932.png>)
 FAQ
-![](<screenshots/Screenshot 2026-05-21 150945.png>)
+![](<screenshots/nietingelogd/Screenshot 2026-05-21 150945.png>)
 Contact
-![](<screenshots/Screenshot 2026-05-21 150959.png>)
+![](<screenshots/nietingelogd/Screenshot 2026-05-21 150959.png>)
 Login
-![](<screenshots/Screenshot 2026-05-21 151224.png>)
+![](<screenshots/nietingelogd/Screenshot 2026-05-21 151224.png>)
 Register
-![](<screenshots/Screenshot 2026-05-21 151258.png>)
+![](<screenshots/nietingelogd/Screenshot 2026-05-21 151258.png>)
 Forgot password
-![](<screenshots/Screenshot 2026-05-21 151241.png>)s
+![](<screenshots/nietingelogd/Screenshot 2026-05-21 151241.png>)s
 ### Ingelogd
 Profile page
 ![](<screenshots/ingelogd/Screenshot 2026-05-21 152945.png>)
