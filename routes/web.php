@@ -143,16 +143,19 @@ Route::delete('/admin/users/{user}', [UserController::class, 'destroy'])
 
     Route::get('/admin/nieuws/{news}', [NewsController::class, 'adminShow'])
         ->name('admin.news.show');
+Route::get('/admin/nieuws/{news}/edit',
+    [NewsController::class, 'edit'])
+    ->name('news.edit');
 
-
-
+Route::put('/admin/nieuws/{news}',
+    [NewsController::class, 'update'])
+    ->name('news.update');
     Route::delete('/admin/nieuws/{news}', [NewsController::class, 'destroy'])
         ->name('news.destroy');
 
 Route::patch('/admin/users/{user}/toggle-admin',
     [UserController::class, 'toggleAdmin'])
     ->name('admin.users.toggle-admin');
-
 
     // FAQ
     Route::get('/admin/faq', [FAQController::class, 'adminIndex'])
@@ -192,9 +195,6 @@ Route::delete('/admin/berichten/{message}',
     [ContactController::class, 'destroy'])
     ->name('admin.messages.destroy');
 });
-
-
-
 /*
 |--------------------------------------------------------------------------
 | Authenticated users

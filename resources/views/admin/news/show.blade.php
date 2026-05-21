@@ -23,10 +23,10 @@ indien beschikbaar.
 -->
     @if($news->image)
 
-        <img src="{{ asset('storage/' . $news->image) }}"
-             class="w-full h-96 object-cover rounded mb-6">
+    <img src="{{ asset($news->image) }}"
+         class="w-full h-96 object-cover rounded mb-6">
 
-    @endif
+@endif
 
     <p class="mb-6">
 

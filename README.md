@@ -279,3 +279,51 @@ AI-chatlog : https://chatgpt.com/share/6a0e212d-400c-83eb-b3f6-690a6d3df436
 - Afbeeldingen gebruikt in de applicatie werden gegenereerd met behulp van ChatGPT.
 
 ## Screenshots van de applicatie
+### Niet ingelogd
+Homepage
+![](<screenshots/Screenshot 2026-05-21 150800.png>)
+![](<screenshots/Screenshot 2026-05-21 150829.png>)
+![](<screenshots/Screenshot 2026-05-21 150842.png>)
+Nieuws overzicht
+![](<screenshots/Screenshot 2026-05-21 150902.png>)
+Nieuws detail
+![](<screenshots/Screenshot 2026-05-21 150932.png>)
+FAQ
+![](<screenshots/Screenshot 2026-05-21 150945.png>)
+Contact
+![](<screenshots/Screenshot 2026-05-21 150959.png>)
+Login
+![](<screenshots/Screenshot 2026-05-21 151224.png>)
+Register
+![](<screenshots/Screenshot 2026-05-21 151258.png>)
+Forgot password
+![](<screenshots/Screenshot 2026-05-21 151241.png>)s
+### Ingelogd
+Profile page
+![](<screenshots/ingelogd/Screenshot 2026-05-21 152945.png>)
+Profile edit
+![](<screenshots/ingelogd/Screenshot 2026-05-21 153019.png>)
+![](<screenshots/ingelogd/Screenshot 2026-05-21 153033.png>)
+![](<screenshots/ingelogd/Screenshot 2026-05-21 153043.png>)
+Comment plaatsen op nieuws
+![](<screenshots/ingelogd/Screenshot 2026-05-21 153115.png>)
+Navbar wanneer ingelogd
+![](<screenshots/ingelogd/Screenshot 2026-05-21 152931.png>)
+### Admin panel
+Dashboard
+![](<screenshots/admin/Screenshot 2026-05-21 153509.png>)
+Gebruikers beheren
+![](<screenshots/admin/Screenshot 2026-05-21 153524.png>)
+Nieuwe gebruiker maken
+![](<screenshots/admin/Screenshot 2026-05-21 153534.png>)
+Nieuwsbeheer
+![](<screenshots/admin/Screenshot 2026-05-21 153807.png>)
+Nieuws detail admin
+![](<screenshots/admin/Screenshot 2026-05-21 154033.png>)
+Nieuws aanmaken
+![](<screenshots/admin/Screenshot 2026-05-21 154056.png>)
+FAQ beheer/ edit
+![](<screenshots/admin/Screenshot 2026-05-21 154117.png>)
+![](<screenshots/admin/Screenshot 2026-05-21 154126.png>)
+Berichten/contact admin
+![](<screenshots/admin/Screenshot 2026-05-21 154141.png>)
