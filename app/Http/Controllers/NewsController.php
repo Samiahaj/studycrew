@@ -166,4 +166,96 @@ public function adminShow(News $news)
         ->with('success', 'Nieuwsartikel verwijderd.');
 }
 
+/**
+ * Toont formulier
+ * om een nieuwsartikel
+ * te bewerken.
+ *
+ * Alle tags worden geladen
+ * zodat de admin tags
+ * kan aanpassen.
+ */
+public function edit(News $news)
+{
+    $tags = Tag::all();
+
+    return view(
+        'admin.news.edit',
+        compact(
+            'news',
+            'tags'
+        )
+    );
+}
+
+
+/**
+ * Werkt een bestaand
+ * nieuwsartikel bij.
+ *
+ * Titel, content,
+ * afbeelding en tags
+ * kunnen aangepast worden.
+ */
+public function update(
+    Request $request,
+    News $news
+)
+{
+    /**
+     * Valideert de gegevens.
+     */
+    $validated = $request->validate([
+        'title' => 'required|max:255',
+        'content' => 'required',
+        'image' => 'nullable|image|max:2048',
+    ]);
+
+    /**
+     * Controleert of
+     * nieuwe afbeelding
+     * werd geüpload.
+     */
+    if ($request->hasFile('image')) {
+
+        $imagePath = $request
+            ->file('image')
+            ->store(
+                'news-images',
+                'public'
+            );
+
+        $news->image = $imagePath;
+    }
+
+    /**
+     * Werkt gegevens bij.
+     */
+    $news->update([
+
+        'title' =>
+            $validated['title'],
+
+        'content' =>
+            $validated['content'],
+    ]);
+
+    /**
+     * Synchroniseert tags.
+     *
+     * Oude tags worden verwijderd
+     * en nieuwe gekoppeld.
+     */
+    $news->tags()->sync(
+        $request->tags ?? []
+    );
+
+    return redirect()
+        ->route('admin.news.index')
+        ->with(
+            'success',
+            'Nieuwsartikel bijgewerkt.'
+        );
+}
+
 }

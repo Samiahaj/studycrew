@@ -8,28 +8,28 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ContactController;
 /*
-|--------------------------------------------------------------------------
-| Homepage
-|--------------------------------------------------------------------------
+HOMEPAGE
 | Laadt de homepage
 | met de nieuwste
 | nieuwsartikelen en FAQ's.
 */
 Route::get('/', function () {
+ if(auth()->check()
+        && auth()->user()->role === 'admin') {
 
+        return redirect()
+            ->route('dashboard');
+    }
     $latestNews = \App\Models\News::latest()
         ->take(3)
         ->get();
-
     $latestFaqs = \App\Models\Faq::latest()
         ->take(4)
         ->get();
-
     return view('welcome', compact(
         'latestNews',
         'latestFaqs'
     ));
-
 })->name('home');
 
 /*

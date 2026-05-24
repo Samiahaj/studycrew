@@ -297,7 +297,7 @@ Login
 Register
 ![](<screenshots/nietingelogd/Screenshot 2026-05-21 151258.png>)
 Forgot password
-![](<screenshots/nietingelogd/Screenshot 2026-05-21 151241.png>)s
+![](<screenshots/nietingelogd/Screenshot 2026-05-21 151241.png>)
 ### Ingelogd
 Profile page
 ![](<screenshots/ingelogd/Screenshot 2026-05-21 152945.png>)
