@@ -181,6 +181,21 @@ uit te loggen.
 Hier wordt de inhoud
 van elke admin pagina geladen.
 -->
+@if(session('success'))
+
+    <div class="bg-green-100
+                text-green-800
+                border
+                border-green-300
+                p-4
+                rounded-lg
+                mb-6">
+
+        {{ session('success') }}
+
+    </div>
+
+@endif
         @yield('content')
 
     </main>
