@@ -7,30 +7,15 @@ use App\Http\Controllers\FAQController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\WelcomeController;
 /*
 HOMEPAGE
 | Laadt de homepage
 | met de nieuwste
 | nieuwsartikelen en FAQ's.
 */
-Route::get('/', function () {
- if(auth()->check()
-        && auth()->user()->role === 'admin') {
-
-        return redirect()
-            ->route('dashboard');
-    }
-    $latestNews = \App\Models\News::latest()
-        ->take(3)
-        ->get();
-    $latestFaqs = \App\Models\Faq::latest()
-        ->take(4)
-        ->get();
-    return view('welcome', compact(
-        'latestNews',
-        'latestFaqs'
-    ));
-})->name('home');
+Route::get('/', [WelcomeController::class, 'welcome'] )
+->name('home');
 
 /*
 |--------------------------------------------------------------------------
